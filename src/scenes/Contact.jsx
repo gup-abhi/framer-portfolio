@@ -23,30 +23,28 @@ const Contact = ({ language }) => {
   } = useForm();
 
   const onSubmit = async (e) => {
+    e.preventDefault(); // Prevent page reload
+
     setLoading(true);
-    setAlert((prev) => {
-      return {
-        ...prev,
-        status: false,
-      };
-    });
+    setAlert((prev) => ({
+      ...prev,
+      status: false,
+    }));
+
     const valid = await trigger();
 
     if (!valid) {
-      e.preventDefault();
       setLoading(false);
-      setAlert((prev) => {
-        return {
-          ...prev,
-          title: language === "pt" ? "Erro" : "Error",
-          text:
-            language === "pt"
-              ? "Algo deu errado. Tente novamente mais tarde"
-              : "Something went wrong. Try again later",
-          type: "error",
-          status: true,
-        };
-      });
+      setAlert((prev) => ({
+        ...prev,
+        title: language === "pt" ? "Erro" : "Error",
+        text:
+          language === "pt"
+            ? "Algo deu errado. Tente novamente mais tarde"
+            : "Something went wrong. Try again later",
+        type: "error",
+        status: true,
+      }));
       return false;
     }
 
@@ -57,43 +55,38 @@ const Contact = ({ language }) => {
       message: message.value,
     };
 
-    const a = await fetch("https://formsubmit.co/gupabhi20@gmail.com", {
+    const response = await fetch("https://formsubmit.co/gupabhi20@gmail.com", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({
-        data,
-      }),
+      body: JSON.stringify({ data }),
     });
-    if (a.status === 200) {
-      setAlert((prev) => {
-        return {
-          ...prev,
-          title: language === "pt" ? "Sucesso" : "Success",
-          text:
-            language === "pt"
-              ? "Email enviado com sucesso!"
-              : "Email sent successfully!",
-          type: "success",
-          status: true,
-        };
-      });
+
+    if (response.status === 200) {
+      setAlert((prev) => ({
+        ...prev,
+        title: language === "pt" ? "Sucesso" : "Success",
+        text:
+          language === "pt"
+            ? "Email enviado com sucesso!"
+            : "Email sent successfully!",
+        type: "success",
+        status: true,
+      }));
       e.target.reset();
     } else {
-      setAlert((prev) => {
-        return {
-          ...prev,
-          title: language === "pt" ? "Erro" : "Error",
-          text:
-            language === "pt"
-              ? "Algo deu errado. Tente novamente mais tarde"
-              : "Something went wrong. Try again later",
-          type: "error",
-          status: true,
-        };
-      });
+      setAlert((prev) => ({
+        ...prev,
+        title: language === "pt" ? "Erro" : "Error",
+        text:
+          language === "pt"
+            ? "Algo deu errado. Tente novamente mais tarde"
+            : "Something went wrong. Try again later",
+        type: "error",
+        status: true,
+      }));
     }
 
     setLoading(false);
@@ -172,7 +165,7 @@ const Contact = ({ language }) => {
           }}
           className="basis-1/2 mt-10 md:mt-0"
         >
-          <form target="_blank" onSubmit={onSubmit}>
+          <form onSubmit={onSubmit}>
             {loading && <Loading />}
             <input
               className="w-full bg-purple font-semibold placeholder-opaque-black p-3"
