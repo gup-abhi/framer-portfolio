@@ -60,11 +60,11 @@ export const texts = {
     },
     about: {
       title: "<about/>",
-      text: "Hi! My name is Abhishek Gupta, I have completed a Master of Applied Computer Science recently and I previously worked as a full stack developer at",
-      empresa: " Tata Consultancy Services",
+      text: "Hi, I’m Abhishek Gupta, a passionate Full Stack Developer based in Montreal, CA. I hold a Master’s degree in Applied Computer Science from Concordia University and have experience working as a Full Stack Developer at",
+      empresa: " Tata Consultancy Services.",
       link: "https://www.tcs.com/",
       text2:
-        ". Analytical, solutions-oriented Full Stack software development professional with experience driving complex, large-scale technical projects covering software/database/network development, product implementation, and technical support. Special expertise in assessing risk and translating innovative ideas into technology solutions. Expert ability to develop and deploy new features, add functionality to products, stabilize performance, and elevate overall user experience. Here are some technologies I'm familiar with:",
+        " I specialize in creating innovative, user-centric solutions using technologies like Java, Python, JavaScript, and various web development frameworks. My expertise spans the entire software development lifecycle, from concept to deployment, with a strong focus on building efficient, scalable, and maintainable systems. I thrive on solving complex problems and constantly strive to enhance the user experience through clean, optimized code. When I’m not coding, you’ll find me exploring new technologies or collaborating with teams to drive impactful projects forward. Here are some technologies I'm proficient in:",
     },
     skills: {
       title: "<skills/>",
