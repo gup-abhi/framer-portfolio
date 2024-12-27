@@ -31,6 +31,7 @@ const AboutMe = ({ language }) => {
               className="text-pink-two font-bold"
               href={texts[language].about.link}
               target="_blank"
+              rel="noreferrer noopener"
             >
               {texts[language].about.empresa}
             </a>{" "}
@@ -54,7 +55,7 @@ const AboutMe = ({ language }) => {
             before:w-full before:max-w-[400] md:before:max-w-[400] before:h-full before:border-2 before:border-purple before:z-[-1]"
             >
               <img
-                alt="profile photo"
+                alt={"profile image"}
                 className="z-10 max-w-sm rounded-3xl shadow-xl"
                 src={require("../assets/profile2.png")}
               />

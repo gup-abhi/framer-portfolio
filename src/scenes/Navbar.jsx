@@ -2,8 +2,8 @@ import { useState } from "react";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { AiOutlineCloseCircle, AiOutlineMenu } from "react-icons/ai";
-import en from "../assets/svg/en.svg";
-import pt from "../assets/svg/pt.svg";
+// import en from "../assets/svg/en.svg";
+// import pt from "../assets/svg/pt.svg";
 
 const Link = ({
   label,
@@ -41,9 +41,9 @@ const Navbar = ({
   const [menuToggled, setMenuToggled] = useState(false);
   const desktop = useMediaQuery("(min-width: 768px)");
 
-  const toggleLanguage = () => {
-    setLanguage(language === "pt" ? "en" : "pt");
-  };
+  // const toggleLanguage = () => {
+  //   setLanguage(language === "pt" ? "en" : "pt");
+  // };
 
   return (
     <nav className={`bg-deep-purple z-40 w-full fixed top-0 py-6`}>
@@ -94,7 +94,7 @@ const Navbar = ({
                 onClick={toggleLanguage}
               >
                 <img
-                  src={language == "pt" ? pt : en}
+                  src={language === "pt" ? pt : en}
                   alt={language}
                   className="cursor-pointer lang-image "
                 />
@@ -165,7 +165,7 @@ const Navbar = ({
                 onClick={toggleLanguage}
               >
                 <img
-                  src={language == "pt" ? pt : en}
+                  src={language === "pt" ? pt : en}
                   alt={language}
                   className="cursor-pointer lang-image "
                 />

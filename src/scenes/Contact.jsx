@@ -189,7 +189,7 @@ const Contact = ({ language }) => {
             {errors.name && (
               <p className="text-red mt-1">
                 {errors.name.type === "required" &&
-                  (language == "pt"
+                  (language === "pt"
                     ? "Este campo é obrigatório"
                     : "This field is required.")}
                 {errors.name.type === "maxLength" && "Max length is 100 char."}
@@ -208,11 +208,11 @@ const Contact = ({ language }) => {
             {errors.email && (
               <p className="text-red mt-1">
                 {errors.email.type === "required" &&
-                  (language == "pt"
+                  (language === "pt"
                     ? "Este campo é obrigatório"
                     : "This field is required.")}
                 {errors.email.type === "pattern" &&
-                  (language == "pt"
+                  (language === "pt"
                     ? "Endereço de email inválido. "
                     : "Invalid email address.")}
               </p>
@@ -231,7 +231,7 @@ const Contact = ({ language }) => {
             />
             {errors.message && (
               <p className="text-red mt-1">
-                {errors.message.type === "required" && language == "pt"
+                {errors.message.type === "required" && language === "pt"
                   ? "Este campo é obrigatório"
                   : "This field is required."}
                 {errors.message.type === "maxLength" &&
