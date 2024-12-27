@@ -20,7 +20,6 @@ const images = {
 
 const Project = ({ project, language }) => {
   const desktop = useMediaQuery("(min-width: 768px)");
-  console.log("Is desktop:", desktop);
 
   return (
     <>
