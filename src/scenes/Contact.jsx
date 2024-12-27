@@ -57,19 +57,16 @@ const Contact = ({ language }) => {
       message: message.value,
     };
 
-    const a = await fetch(
-      "https://formsubmit.co/agabhishek20121998@gmail.com",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          data,
-        }),
-      }
-    );
+    const a = await fetch("https://formsubmit.co/gupabhi20@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        data,
+      }),
+    });
     if (a.status === 200) {
       setAlert((prev) => {
         return {
