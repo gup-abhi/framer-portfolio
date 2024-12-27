@@ -229,12 +229,15 @@ const Contact = ({ language }) => {
               </p>
             )}
 
-            <button
-              className="p-5 bg-gradient-rainbow font-semibold mt-5 hover:bg-red hover:text-deep-purple transition duration-500 uppercase"
+            <motion.button
+              className="p-5 bg-gradient-rainbow font-semibold mt-5 uppercase rounded-md"
               type="submit"
+              whileHover={{ scale: 1.05 }} // Scale up on hover
+              whileTap={{ scale: 0.95 }} // Scale down on tap
+              transition={{ duration: 0.2 }} // Smooth transition for both effects
             >
               {texts[language].contact.btn}
-            </button>
+            </motion.button>
           </form>
         </motion.div>
       </div>

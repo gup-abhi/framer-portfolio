@@ -46,10 +46,6 @@ const Projects = ({ language }) => {
           className="flex flex-col gap-5 w-full items-center justify-center"
         >
           {/* idk why foreach/map is not working */}
-          {/* <Project project={projects[0]} language={language} />
-          <Project project={projects[1]} language={language} />
-          <Project project={projects[2]} language={language} />
-          <Project project={projects[3]} language={language} /> */}
           {projects.map((project, index) => (
             <Project key={index} project={project} language={language} />
           ))}

@@ -24,7 +24,7 @@ const Navbar = ({ selectedPage, setSelectedPage, language, setLanguage }) => {
             : hasShadow
             ? "text-deep-purple"
             : "text-pink"
-        } hover:text-fuchsia-600 transition delay-200 duration-500`}
+        } hover:text-fuchsia-600 transition duration-500`}
         href={`#${lowerPage}`}
         onClick={() => {
           setSelectedPage(lowerPage);
@@ -54,7 +54,7 @@ const Navbar = ({ selectedPage, setSelectedPage, language, setLanguage }) => {
 
   return (
     <nav
-      className={`fixed w-full z-40 top-0 py-6 transition-all delay-200 duration-500 bg-deep-purple ${
+      className={`fixed w-full z-40 top-0 py-6 transition-all duration-500 bg-deep-purple ${
         hasShadow
           ? "bg-light-pink text-deep-purple"
           : "bg-deep-purple text-white"

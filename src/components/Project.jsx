@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { easeIn, motion } from "framer-motion";
 import useMediaQuery from "./../hooks/useMediaQuery";
 import { FaGithub, FaEye } from "react-icons/fa";
 import expense from "../assets/projects/expense-tracker.png";
@@ -25,7 +25,7 @@ const Project = ({ project, language }) => {
     <>
       {desktop ? (
         <motion.div variants={projectD} className="relative">
-          <div className="flex bg-light-pink text-black rounded-md">
+          <div className="flex bg-light-pink text-deep-purple rounded-md">
             <div className="w-1/2">
               <img src={images[project.img]} alt={project.title} />
             </div>
@@ -50,26 +50,32 @@ const Project = ({ project, language }) => {
               </div>
               <div className="flex gap-4">
                 {project.git && (
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.1 }} // Scale up on hover
+                    whileTap={{ scale: 0.9 }} // Scale down on click
+                    transition={{ duration: 0.2 }} // Smooth transition
                     href={project.git}
                     target="_blank"
                     rel="noreferrer"
-                    className="bg-purple hover:bg-deep-purple transition duration-200 text-white rounded-md px-2 py-1 flex items-center gap-1"
+                    className="bg-purple text-white rounded-md px-2 py-1 flex items-center gap-1"
                   >
                     <FaGithub />
                     GitHub
-                  </a>
+                  </motion.a>
                 )}
                 {project.path && (
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.1 }} // Scale up on hover
+                    whileTap={{ scale: 0.9 }} // Scale down on click
+                    transition={{ duration: 0.2 }} // Smooth transition
                     href={project.path}
                     target="_blank"
                     rel="noreferrer"
-                    className="bg-purple hover:bg-deep-purple transition duration-200 text-white rounded-md px-2 py-1 flex items-center gap-1"
+                    className="bg-purple text-white rounded-md px-2 py-1 flex items-center gap-1"
                   >
                     <FaEye />
                     Deploy
-                  </a>
+                  </motion.a>
                 )}
               </div>
             </div>
