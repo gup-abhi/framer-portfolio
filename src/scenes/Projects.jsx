@@ -4,10 +4,12 @@ import Project from "../components/Project";
 import { projects } from "../utils/projects";
 import { texts } from "../utils/texts";
 
-const container = {
-  hidden: {},
+const projectHeadingVariant = {
+  hidden: { opacity: 0, y: -100 },
   visible: {
-    transition: { staggerChildren: 0.2 },
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: 0.5, type: "easeIn" },
   },
 };
 
@@ -19,11 +21,7 @@ const Projects = ({ language }) => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.5 }}
-        variants={{
-          hidden: { opacity: 0, y: -50 },
-          visible: { opacity: 1, y: 0 },
-        }}
+        variants={projectHeadingVariant}
       >
         <div>
           <p className="font-poppins font-semibold text-4xl">
@@ -37,19 +35,17 @@ const Projects = ({ language }) => {
       </motion.div>
 
       <div className="flex justify-center gap-2 w-full">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-          variants={container}
-          className="flex flex-col gap-5 w-full items-center justify-center"
-        >
+        <div className="flex flex-col gap-5 w-full items-center justify-center">
           {/* idk why foreach/map is not working */}
           {projects.map((project, index) => (
-            <Project key={index} project={project} language={language} />
+            <Project
+              key={index}
+              project={project}
+              language={language}
+              index={index}
+            />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

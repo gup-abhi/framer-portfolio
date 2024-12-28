@@ -7,11 +7,6 @@ import movies from "../assets/projects/top-250-movies.png";
 import blog from "../assets/projects/django-blog.png";
 import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
 
-const projectD = {
-  hidden: { opacity: 0, scale: 0.7 },
-  visible: { opacity: 1, scale: 1 },
-};
-
 const images = {
   expense,
   todo,
@@ -19,13 +14,27 @@ const images = {
   "django-blog": blog,
 };
 
-const Project = ({ project, language }) => {
+const Project = ({ project, language, index }) => {
+  const projectVariant = {
+    hidden: { opacity: 0, scale: index % 2 == 0 ? 0.8 : 1.2 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { delay: 0.5, duration: 0.5, ease: "easeOut" },
+    },
+  };
   const desktop = useMediaQuery("(min-width: 768px)");
 
   return (
     <>
       {desktop ? (
-        <motion.div variants={projectD} className="relative">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={projectVariant}
+          viewport={{ once: true, amount: 0.75 }} // Trigger animation only when fully in view
+          className="relative"
+        >
           <div className="flex bg-light-pink text-deep-purple rounded-md">
             <div className="w-1/2">
               <img src={images[project.img]} alt={project.title} />
@@ -38,23 +47,21 @@ const Project = ({ project, language }) => {
                 {project.subtitle[language]}
               </div>
               <div className="flex flex-wrap gap-4">
-                {project.technologies.map((tech, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="bg-pink-two text-white rounded-md px-2 py-1"
-                    >
-                      {tech}
-                    </div>
-                  );
-                })}
+                {project.technologies.map((tech, index) => (
+                  <div
+                    key={index}
+                    className="bg-pink-two text-white rounded-md px-2 py-1"
+                  >
+                    {tech}
+                  </div>
+                ))}
               </div>
               <div className="flex gap-4">
                 {project.git && (
                   <motion.a
-                    whileHover={{ scale: 1.1 }} // Scale up on hover
-                    whileTap={{ scale: 0.9 }} // Scale down on click
-                    transition={{ duration: 0.2 }} // Smooth transition
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ duration: 0.2 }}
                     href={project.git}
                     target="_blank"
                     rel="noreferrer"
@@ -72,9 +79,9 @@ const Project = ({ project, language }) => {
                 )}
                 {project.path && (
                   <motion.a
-                    whileHover={{ scale: 1.1 }} // Scale up on hover
-                    whileTap={{ scale: 0.9 }} // Scale down on click
-                    transition={{ duration: 0.2 }} // Smooth transition
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ duration: 0.2 }}
                     href={project.path}
                     target="_blank"
                     rel="noreferrer"
@@ -95,7 +102,13 @@ const Project = ({ project, language }) => {
           </div>
         </motion.div>
       ) : (
-        <div className="bg-white text-black rounded-md">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={projectVariant}
+          viewport={{ once: true, amount: 0.5 }} // Trigger animation only when fully in view
+          className="bg-white text-black rounded-md"
+        >
           <img src={images[project.img]} alt={project.title} />
           <div className="flex flex-col items-start p-4 gap-4">
             <p className="font-source-code font-semibold text-2xl">
@@ -105,16 +118,14 @@ const Project = ({ project, language }) => {
               {project.subtitle[language]}
             </div>
             <div className="flex flex-wrap gap-4">
-              {project.technologies.map((tech, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="bg-pink-two text-white rounded-md px-2 py-1"
-                  >
-                    {tech}
-                  </div>
-                );
-              })}
+              {project.technologies.map((tech, index) => (
+                <div
+                  key={index}
+                  className="bg-pink-two text-white rounded-md px-2 py-1"
+                >
+                  {tech}
+                </div>
+              ))}
             </div>
             <div className="flex gap-4">
               {project.git && (
@@ -141,7 +152,7 @@ const Project = ({ project, language }) => {
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </>
   );
