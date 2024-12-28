@@ -6,6 +6,72 @@ import { texts } from "../utils/texts";
 import ProfileImage from "../assets/profile.jpg";
 import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
 
+const headingVariant = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { type: "easeInOut", duration: 0.5 },
+  },
+};
+
+const buttonVariant = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { type: "easeInOut", delay: 0.2, duration: 0.5 },
+  },
+};
+
+const SocialMediaVariant = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { type: "easeInOut", delay: 0.4, duration: 0.5 },
+  },
+};
+
+const imageDivVariant = {
+  hidden: {
+    opacity: 0,
+    x: 100,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: 0.6,
+      duration: 0.5,
+      type: "tween",
+      staggerChildren: 0.5,
+    },
+  },
+};
+
+const imageVariant = {
+  hidden: {
+    opacity: 0,
+    x: 100,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      opacity: {
+        delay: 1, // Start the opacity animation after 0.6s
+        duration: 1, // Opacity transition lasts 1 second
+      },
+      x: {
+        delay: 0.6,
+        duration: 1, // Same as opacity
+        type: "tween",
+      },
+    },
+  },
+};
+
 const Landing = ({ setSelectedPage, language }) => {
   const largeScreens = useMediaQuery("(min-width: 1060px)");
 
@@ -16,16 +82,20 @@ const Landing = ({ setSelectedPage, language }) => {
     >
       <div className="md:w-screen basis-3/5 z-10 mt-20 md:mt-32 flex justify-center md:order-2">
         {largeScreens ? (
-          <div
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={imageDivVariant}
             className="relative z-0 ml-20 before:absolute before:-top-20 before:-left-20 before:rounded-t-[150px]
                         before:w-full before:max-w-[300px] md:before:max-w-[400px] before:h-full before:border-2 before:border-purple before:z-[-1]"
           >
-            <img
+            <motion.img
+              variants={imageVariant}
               alt="profile"
-              className="hover:filter hover:saturate-150 transition duration-500 z-10 w-full max-w-[300px] md:max-w-[350px] rounded-t-[150px] "
+              className="z-10 w-full max-w-[300px] md:max-w-[350px] rounded-t-[150px] "
               src={ProfileImage}
             />
-          </div>
+          </motion.div>
         ) : (
           <img
             alt="profile"
@@ -40,11 +110,7 @@ const Landing = ({ setSelectedPage, language }) => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-          variants={{
-            hidden: { opacity: 0, x: -50 },
-            visible: { opacity: 1, x: 0 },
-          }}
+          variants={headingVariant}
         >
           <p className="text-6xl font-poppins text-purple z-10 text-center md:text-start">
             {`<Abhishek Gupta/>`}
@@ -60,11 +126,7 @@ const Landing = ({ setSelectedPage, language }) => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          variants={{
-            hidden: { opacity: 0, x: -50 },
-            visible: { opacity: 1, x: 0 },
-          }}
+          variants={buttonVariant}
         >
           <AnchorLink
             className="bg-gradient-rainbow text-deep-blue rounded-sm py-3 px-7 font-semibold
@@ -96,11 +158,7 @@ const Landing = ({ setSelectedPage, language }) => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          variants={{
-            hidden: { opacity: 0, x: -50 },
-            visible: { opacity: 1, x: 0 },
-          }}
+          variants={SocialMediaVariant}
         >
           <SocialMediaIcons />
         </motion.div>
