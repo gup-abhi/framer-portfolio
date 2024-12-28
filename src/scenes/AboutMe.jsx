@@ -1,10 +1,28 @@
 import useMediaQuery from "../hooks/useMediaQuery";
-import { motion } from "framer-motion";
+import { delay, motion } from "framer-motion";
 import LineGradient from "../components/LineGradient";
 import { technologies } from "../utils/tech";
 import { texts } from "./../utils/texts";
 import ProfileImage from "../assets/profile2.png";
 import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
+
+const aboutVariant = {
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, staggerChildren: 0.1 },
+  },
+};
+
+const technologyVariant = {
+  hidden: { opacity: 0, y: -50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, type: "spring", stiffness: 50 },
+  },
+};
 
 const AboutMe = ({ language }) => {
   const mediumScreens = useMediaQuery("(min-width: 1060px)");
@@ -32,11 +50,7 @@ const AboutMe = ({ language }) => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-          variants={{
-            hidden: { opacity: 0, x: 50 },
-            visible: { opacity: 1, x: 0 },
-          }}
+          variants={aboutVariant}
           className="md:w-1/3"
         >
           <p className="font-poppins font-semibold text-4xl mb-5">
@@ -64,10 +78,15 @@ const AboutMe = ({ language }) => {
           <div className="flex gap-6 flex-wrap">
             {technologies.map((tech, index) => {
               return (
-                <div className="flex justify-evenly" key={index}>
+                <motion.div
+                  viewport={{ once: true, amount: 1 }}
+                  variants={technologyVariant}
+                  className="flex justify-evenly"
+                  key={index}
+                >
                   <span className="text-purple mx-1">&#10148;</span>
                   <p>{tech}</p>
-                </div>
+                </motion.div>
               );
             })}
           </div>
