@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.47037b0d.css",
-    "main.js": "/static/js/main.c087b42a.js",
+    "main.css": "/static/css/main.d4b47cac.css",
+    "main.js": "/static/js/main.4bf5b76b.js",
     "static/media/profile3.jpg": "/static/media/profile3.81b442aff713f10128c0.jpg",
     "static/media/profile.jpg": "/static/media/profile.3f344c5e4d39ea0c0ac8.jpg",
     "static/media/top-250-movies.png": "/static/media/top-250-movies.6b3d3def7886bf496bf8.png",
@@ -10,11 +10,11 @@
     "static/media/django-blog.png": "/static/media/django-blog.ac14319430b05138f4a4.png",
     "static/media/todo-app.png": "/static/media/todo-app.752a8c09fac18bb81848.png",
     "index.html": "/index.html",
-    "main.47037b0d.css.map": "/static/css/main.47037b0d.css.map",
-    "main.c087b42a.js.map": "/static/js/main.c087b42a.js.map"
+    "main.d4b47cac.css.map": "/static/css/main.d4b47cac.css.map",
+    "main.4bf5b76b.js.map": "/static/js/main.4bf5b76b.js.map"
   },
   "entrypoints": [
-    "static/css/main.47037b0d.css",
-    "static/js/main.c087b42a.js"
+    "static/css/main.d4b47cac.css",
+    "static/js/main.4bf5b76b.js"
   ]
 }
