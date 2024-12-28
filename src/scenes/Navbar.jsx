@@ -3,7 +3,7 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { AiOutlineCloseCircle, AiOutlineMenu } from "react-icons/ai";
 import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
-import { delay, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const headingVariant = {
   hidden: { opacity: 0, y: -100 },
