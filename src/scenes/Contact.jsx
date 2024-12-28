@@ -8,6 +8,34 @@ import Loading from "../components/Loading";
 import Alert from "./../components/Alert";
 import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
 
+const headingVariant = {
+  hidden: { opacity: 0, y: -100 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: 0.5, type: "easeIn" },
+  },
+};
+
+const imageVariant = {
+  hidden: { opacity: 0, x: -50, y: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    transition: { duration: 0.5, delay: 0.5 },
+  },
+};
+
+const formVariant = {
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { delay: 0.5, duration: 0.5, staggerChildren: 0.2 },
+  },
+};
+
 const Contact = ({ language }) => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({
@@ -56,14 +84,17 @@ const Contact = ({ language }) => {
       message: message.value,
     };
 
-    const response = await fetch("https://formsubmit.co/gupabhi20@gmail.com", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({ data }),
-    });
+    const response = await fetch(
+      "https://formsubmit.co/agabhishek20121998@gmail.com",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ data }),
+      }
+    );
 
     if (response.status === 200) {
       setAlert((prev) => ({
@@ -104,12 +135,8 @@ const Contact = ({ language }) => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.5 }}
-        variants={{
-          hidden: { opacity: 0, x: 50 },
-          visible: { opacity: 1, x: 0 },
-        }}
+        viewport={{ once: true, amount: 0.75 }}
+        variants={headingVariant}
         className="flex justify-center w-full"
       >
         <div>
@@ -126,12 +153,8 @@ const Contact = ({ language }) => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-          variants={{
-            hidden: { opacity: 0, y: 50 },
-            visible: { opacity: 1, y: 0 },
-          }}
+          viewport={{ once: true, amount: 0.75 }}
+          variants={imageVariant}
           className="basis-1/2 flex justify-center"
         >
           {largeScreens ? (
@@ -158,12 +181,8 @@ const Contact = ({ language }) => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          variants={{
-            hidden: { opacity: 0, y: 50 },
-            visible: { opacity: 1, y: 0 },
-          }}
+          viewport={{ once: true, amount: 0.75 }}
+          variants={formVariant}
           className="basis-1/2 mt-10 md:mt-0"
         >
           <form onSubmit={onSubmit}>
@@ -235,7 +254,7 @@ const Contact = ({ language }) => {
               type="submit"
               whileHover={{ scale: 1.05 }} // Scale up on hover
               whileTap={{ scale: 0.95 }} // Scale down on tap
-              transition={{ duration: 0.2 }} // Smooth transition for both effects
+              transition={{ duration: 0.2, type: "easeIn" }} // Smooth transition for both effects
               onClick={() =>
                 handleEventAnalytics("Contact Me Form", `Clicked submit button`)
               }
