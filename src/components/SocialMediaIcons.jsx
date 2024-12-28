@@ -24,16 +24,15 @@ const SocialMediaIcons = () => {
   return (
     <div className="flex justify-center md:justify-start my-10 gap-7">
       {socialMediaIconsArray.map((item, index) => (
-        <motion.a
+        <a
           key={index}
           href={item.href}
           target="_blank"
           rel="noreferrer"
-          className="hover:opacity-50 transition duration-500"
           whileHover={{
             scale: 1.2, // Enlarge on hover
           }}
-          whileTap={{ scale: 0.9 }} // Shrink slightly on click
+          whileTap={{ scale: 0.8 }} // Shrink slightly on click
           onClick={() =>
             handleEventAnalytics(
               "Social Media",
@@ -42,13 +41,13 @@ const SocialMediaIcons = () => {
           }
         >
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.3 * index }}
           >
             {React.cloneElement(item.icon, { size: 25 })}
           </motion.div>
-        </motion.a>
+        </a>
       ))}
     </div>
   );
