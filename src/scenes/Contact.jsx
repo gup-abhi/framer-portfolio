@@ -6,6 +6,7 @@ import { texts } from "../utils/texts";
 import { useState } from "react";
 import Loading from "../components/Loading";
 import Alert from "./../components/Alert";
+import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
 
 const Contact = ({ language }) => {
   const [loading, setLoading] = useState(false);
@@ -235,6 +236,9 @@ const Contact = ({ language }) => {
               whileHover={{ scale: 1.05 }} // Scale up on hover
               whileTap={{ scale: 0.95 }} // Scale down on tap
               transition={{ duration: 0.2 }} // Smooth transition for both effects
+              onClick={() =>
+                handleEventAnalytics("Contact Me Form", `Clicked submit button`)
+              }
             >
               {texts[language].contact.btn}
             </motion.button>

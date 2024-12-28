@@ -1,10 +1,11 @@
-import { easeIn, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import useMediaQuery from "./../hooks/useMediaQuery";
 import { FaGithub, FaEye } from "react-icons/fa";
 import expense from "../assets/projects/expense-tracker.png";
 import todo from "../assets/projects/todo-app.png";
 import movies from "../assets/projects/top-250-movies.png";
 import blog from "../assets/projects/django-blog.png";
+import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
 
 const projectD = {
   hidden: { opacity: 0, scale: 0.7 },
@@ -58,6 +59,12 @@ const Project = ({ project, language }) => {
                     target="_blank"
                     rel="noreferrer"
                     className="bg-purple text-white rounded-md px-2 py-1 flex items-center gap-1"
+                    onClick={() =>
+                      handleEventAnalytics(
+                        "Project GitHub",
+                        `Clicked GitHub button for ${project.title}`
+                      )
+                    }
                   >
                     <FaGithub />
                     GitHub
@@ -72,6 +79,12 @@ const Project = ({ project, language }) => {
                     target="_blank"
                     rel="noreferrer"
                     className="bg-purple text-white rounded-md px-2 py-1 flex items-center gap-1"
+                    onClick={() =>
+                      handleEventAnalytics(
+                        "Project Link",
+                        `Clicked project link for ${project.title}`
+                      )
+                    }
                   >
                     <FaEye />
                     Deploy

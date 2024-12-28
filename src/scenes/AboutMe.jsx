@@ -4,6 +4,7 @@ import LineGradient from "../components/LineGradient";
 import { technologies } from "../utils/tech";
 import { texts } from "./../utils/texts";
 import ProfileImage from "../assets/profile2.png";
+import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
 
 const AboutMe = ({ language }) => {
   const mediumScreens = useMediaQuery("(min-width: 1060px)");
@@ -49,6 +50,12 @@ const AboutMe = ({ language }) => {
               href={texts[language].about.link}
               target="_blank"
               rel="noreferrer noopener"
+              onClick={() =>
+                handleEventAnalytics(
+                  "Company Link",
+                  `Clicked Tata Consultancy Services Link`
+                )
+              }
             >
               {texts[language].about.empresa}
             </a>{" "}

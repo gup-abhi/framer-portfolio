@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import SocialMediaIcons from "../components/SocialMediaIcons";
 import { texts } from "../utils/texts";
+import ProfileImage from "../assets/profile.jpg";
+import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
 
 const Landing = ({ setSelectedPage, language }) => {
   const largeScreens = useMediaQuery("(min-width: 1060px)");
@@ -21,14 +23,14 @@ const Landing = ({ setSelectedPage, language }) => {
             <img
               alt="profile"
               className="hover:filter hover:saturate-150 transition duration-500 z-10 w-full max-w-[300px] md:max-w-[350px] rounded-t-[150px] "
-              src={require("../assets/profile.jpg")}
+              src={ProfileImage}
             />
           </div>
         ) : (
           <img
             alt="profile"
             className="z-10 w-full max-w-[300px] md:max-w-[600px] rounded-top-[150px] "
-            src={require("../assets/profile.jpg")}
+            src={ProfileImage}
           />
         )}
       </div>
@@ -67,14 +69,20 @@ const Landing = ({ setSelectedPage, language }) => {
           <AnchorLink
             className="bg-gradient-rainbow text-deep-blue rounded-sm py-3 px-7 font-semibold
                hover:text-deep-purple transition duration-500"
-            onClick={() => setSelectedPage("contact")}
+            onClick={() => {
+              setSelectedPage("contact");
+              handleEventAnalytics("Contact", "Clicked contact me button");
+            }}
             href="#contact"
           >
             {texts[language].landing.contact}
           </AnchorLink>
           <AnchorLink
             className="rounded-r-sm bg-gradient-rainbow py-0.5 pr-0.5"
-            onClick={() => setSelectedPage("contact")}
+            onClick={() => {
+              setSelectedPage("contact");
+              handleEventAnalytics("Contact", "Clicked Let's Talk button");
+            }}
             href="#contact"
           >
             <div className="bg-deep-purple hover:text-purple transition duration-500 w-full h-full flex items-center justify-center px-10 font-playfair">

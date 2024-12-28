@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { AiOutlineCloseCircle, AiOutlineMenu } from "react-icons/ai";
+import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
 
 const Navbar = ({ selectedPage, setSelectedPage, language, setLanguage }) => {
   const [menuToggled, setMenuToggled] = useState(false);
@@ -28,6 +29,7 @@ const Navbar = ({ selectedPage, setSelectedPage, language, setLanguage }) => {
         href={`#${lowerPage}`}
         onClick={() => {
           setSelectedPage(lowerPage);
+          handleEventAnalytics("NavBar", `Clicked ${lowerPage} anchor`);
           setTimeout(() => {
             setMenuToggled(false);
           }, 300);

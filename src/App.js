@@ -9,6 +9,7 @@ import Footer from "./scenes/Footer";
 
 import LineGradient from "./components/LineGradient";
 import useMediaQuery from "./hooks/useMediaQuery";
+import { useGoogleAnalytics } from "./hooks/useGoogleAnalytics";
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -18,6 +19,7 @@ function App() {
   const [topOfPage, setTopOfPage] = useState(true);
   const [language, setLanguage] = useState("en");
   const mediumScreens = useMediaQuery("(min-width: 1060px)");
+  useGoogleAnalytics(selectedPage);
 
   useEffect(() => {
     const handleScroll = () => {

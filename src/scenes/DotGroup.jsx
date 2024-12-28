@@ -1,4 +1,5 @@
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
 
 const DotGroup = ({ selectedPage, setSelectedPage }) => {
   const selected = `relative bg-pink-two before:absolute before:w-6 before:h-6 before:rounded-full
@@ -11,7 +12,10 @@ const DotGroup = ({ selectedPage, setSelectedPage }) => {
         className={`${
           selectedPage === "home" ? selected : "bg-purple"
         } w-3 h-3 rounded-full`}
-        onClick={() => setSelectedPage("home")}
+        onClick={() => {
+          setSelectedPage("home");
+          handleEventAnalytics("Dot Group", `Clicked home dot`);
+        }}
       />
 
       <AnchorLink
@@ -19,7 +23,10 @@ const DotGroup = ({ selectedPage, setSelectedPage }) => {
         className={`${
           selectedPage === "about" ? selected : "bg-purple"
         } w-3 h-3 rounded-full`}
-        onClick={() => setSelectedPage("about")}
+        onClick={() => {
+          setSelectedPage("about");
+          handleEventAnalytics("Dot Group", `Clicked about dot`);
+        }}
       />
 
       <AnchorLink
@@ -27,7 +34,10 @@ const DotGroup = ({ selectedPage, setSelectedPage }) => {
         className={`${
           selectedPage === "skills" ? selected : "bg-purple"
         } w-3 h-3 rounded-full`}
-        onClick={() => setSelectedPage("skills")}
+        onClick={() => {
+          setSelectedPage("skills");
+          handleEventAnalytics("Dot Group", `Clicked skills dot`);
+        }}
       />
 
       <AnchorLink
@@ -35,7 +45,10 @@ const DotGroup = ({ selectedPage, setSelectedPage }) => {
         className={`${
           selectedPage === "projects" ? selected : "bg-purple"
         } w-3 h-3 rounded-full`}
-        onClick={() => setSelectedPage("projects")}
+        onClick={() => {
+          setSelectedPage("projects");
+          handleEventAnalytics("Dot Group", `Clicked projects dot`);
+        }}
       />
 
       <AnchorLink
@@ -43,7 +56,10 @@ const DotGroup = ({ selectedPage, setSelectedPage }) => {
         className={`${
           selectedPage === "contact" ? selected : "bg-purple"
         } w-3 h-3 rounded-full`}
-        onClick={() => setSelectedPage("contact")}
+        onClick={() => {
+          setSelectedPage("contact");
+          handleEventAnalytics("Dot Group", `Clicked contact dot`);
+        }}
       />
     </div>
   );
