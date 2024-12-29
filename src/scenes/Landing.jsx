@@ -1,5 +1,5 @@
 import useMediaQuery from "../hooks/useMediaQuery";
-import { motion } from "framer-motion";
+import { delay, motion } from "framer-motion";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import SocialMediaIcons from "../components/SocialMediaIcons";
 import { texts } from "../utils/texts";
@@ -50,7 +50,7 @@ const imageDivVariant = {
   },
 };
 
-const imageVariant = {
+const imageDesktopVariant = {
   hidden: {
     opacity: 0,
     x: 100,
@@ -67,6 +67,37 @@ const imageVariant = {
         delay: 0.6,
         duration: 1, // Same as opacity
         type: "tween",
+      },
+    },
+  },
+};
+
+const imageMobileVariant = {
+  hidden: {
+    opacity: 0,
+    scale: 0,
+    boxShadow: "0px 0px 0px 0px rgba(144, 103, 198, 1)",
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    boxShadow: "0px 0px 15px 25px rgba(144, 103, 198, 0.5)",
+    transition: {
+      opacity: {
+        delay: 0.5, // Start the opacity animation after 0.6s
+        duration: 1, // Opacity transition lasts 1 second
+        type: "easeIn",
+      },
+      scale: {
+        delay: 0.5,
+        duration: 1, // Same as opacity
+        type: "tween",
+      },
+      boxShadow: {
+        type: "spring",
+        stifness: 100,
+        duration: 0.5,
+        delay: 1.5,
       },
     },
   },
@@ -90,16 +121,19 @@ const Landing = ({ setSelectedPage, language }) => {
                         before:w-full before:max-w-[300px] md:before:max-w-[400px] before:h-full before:border-2 before:border-purple before:z-[-1]"
           >
             <motion.img
-              variants={imageVariant}
+              variants={imageDesktopVariant}
               alt="profile"
               className="z-10 w-full max-w-[300px] md:max-w-[350px] rounded-t-[150px] "
               src={ProfileImage}
             />
           </motion.div>
         ) : (
-          <img
+          <motion.img
+            initial="hidden"
+            animate="visible"
+            variants={imageMobileVariant}
             alt="profile"
-            className="z-10 w-full max-w-[300px] md:max-w-[600px] rounded-top-[150px] "
+            className="z-10 w-full max-w-[300px] md:max-w-[600px] rounded-t-[50px] rounded-b-[50px]"
             src={ProfileImage}
           />
         )}
