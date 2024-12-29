@@ -1,5 +1,5 @@
 import useMediaQuery from "../hooks/useMediaQuery";
-import { delay, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import SocialMediaIcons from "../components/SocialMediaIcons";
 import { texts } from "../utils/texts";
