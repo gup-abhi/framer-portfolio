@@ -24,7 +24,7 @@ const SocialMediaIcons = () => {
   return (
     <div className="flex justify-center md:justify-start my-10 gap-7">
       {socialMediaIconsArray.map((item, index) => (
-        <a
+        <motion.a
           key={index}
           href={item.href}
           target="_blank"
@@ -47,7 +47,7 @@ const SocialMediaIcons = () => {
           >
             {React.cloneElement(item.icon, { size: 25 })}
           </motion.div>
-        </a>
+        </motion.a>
       ))}
     </div>
   );

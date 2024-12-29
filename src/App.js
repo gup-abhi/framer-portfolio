@@ -13,11 +13,13 @@ import { useGoogleAnalytics } from "./hooks/useGoogleAnalytics";
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import InitialLoading from "./components/InitialLoading";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState("home");
   const [topOfPage, setTopOfPage] = useState(true);
   const [language, setLanguage] = useState("en");
+  const [isLoading, setIsLoading] = useState(true);
   const mediumScreens = useMediaQuery("(min-width: 1060px)");
   useGoogleAnalytics(selectedPage);
 
@@ -34,82 +36,94 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <div className="app bg-deep-purple">
-      <Navbar
-        selectedPage={selectedPage}
-        setSelectedPage={setSelectedPage}
-        topOfPage={topOfPage}
-        language={language}
-        setLanguage={setLanguage}
-      />
+  useEffect(() => {
+    console.log(isLoading);
+  }, [isLoading]);
 
-      <div className="w-5/6 mx-auto">
-        {mediumScreens && (
-          <DotGroup
+  return (
+    <>
+      {!isLoading ? (
+        <div className="app bg-deep-purple">
+          <Navbar
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
+            topOfPage={topOfPage}
+            language={language}
+            setLanguage={setLanguage}
           />
-        )}
-        <motion.div
-          margin="0 0 -200px 0"
-          amount="all"
-          onViewportEnter={() => setSelectedPage("home")}
-        >
-          <Landing setSelectedPage={setSelectedPage} language={language} />
-        </motion.div>
-      </div>
 
-      <LineGradient />
+          <div className="w-5/6 mx-auto">
+            {mediumScreens && (
+              <DotGroup
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
+            )}
+            <motion.div
+              margin="0 0 -200px 0"
+              amount="all"
+              onViewportEnter={() => setSelectedPage("home")}
+            >
+              <Landing setSelectedPage={setSelectedPage} language={language} />
+            </motion.div>
+          </div>
 
-      <div className="w-5/6 mx-auto">
-        <motion.div
-          margin="0 0 -200px 0"
-          amount="all"
-          onViewportEnter={() => setSelectedPage("about")}
-        >
-          <AboutMe language={language} />
-        </motion.div>
-      </div>
+          <LineGradient />
 
-      <LineGradient />
+          <div className="w-5/6 mx-auto">
+            <motion.div
+              margin="0 0 -200px 0"
+              amount="all"
+              onViewportEnter={() => setSelectedPage("about")}
+            >
+              <AboutMe language={language} />
+            </motion.div>
+          </div>
 
-      <div className="w-5/6 mx-auto">
-        <motion.div
-          margin="0 0 -200px 0"
-          amount="all"
-          onViewportEnter={() => setSelectedPage("skills")}
-        >
-          <Skills language={language} />
-        </motion.div>
-      </div>
+          <LineGradient />
 
-      <LineGradient />
+          <div className="w-5/6 mx-auto">
+            <motion.div
+              margin="0 0 -200px 0"
+              amount="all"
+              onViewportEnter={() => setSelectedPage("skills")}
+            >
+              <Skills language={language} />
+            </motion.div>
+          </div>
 
-      <div className="w-5/6 mx-auto">
-        <motion.div
-          margin="0 0 -200px 0"
-          amount="all"
-          onViewportEnter={() => setSelectedPage("projects")}
-        >
-          <Projects language={language} />
-        </motion.div>
-      </div>
+          <LineGradient />
 
-      <LineGradient />
+          <div className="w-5/6 mx-auto">
+            <motion.div
+              margin="0 0 -200px 0"
+              amount="all"
+              onViewportEnter={() => setSelectedPage("projects")}
+            >
+              <Projects language={language} />
+            </motion.div>
+          </div>
 
-      <div className="w-5/6 mx-auto">
-        <motion.div
-          margin="0 0 -200px 0"
-          amount="all"
-          onViewportEnter={() => setSelectedPage("contact")}
-        >
-          <Contact language={language} />
-        </motion.div>
-      </div>
+          <LineGradient />
 
-      <Footer />
-    </div>
+          <div className="w-5/6 mx-auto">
+            <motion.div
+              margin="0 0 -200px 0"
+              amount="all"
+              onViewportEnter={() => setSelectedPage("contact")}
+            >
+              <Contact language={language} />
+            </motion.div>
+          </div>
+
+          <Footer />
+        </div>
+      ) : (
+        <>
+          <InitialLoading setIsLoading={setIsLoading} />
+        </>
+      )}
+    </>
   );
 }
 

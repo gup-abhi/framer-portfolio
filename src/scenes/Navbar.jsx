@@ -101,6 +101,7 @@ const Navbar = ({ selectedPage, setSelectedPage, language, setLanguage }) => {
           <div className="flex justify-between items-center gap-16 font-source-code font-bold text-md font-semibold">
             {Object.keys(translations[language]).map((key, index) => (
               <motion.span
+                key={index}
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{
