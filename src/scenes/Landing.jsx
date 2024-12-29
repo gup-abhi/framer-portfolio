@@ -147,7 +147,7 @@ const Landing = ({ setSelectedPage, language }) => {
           variants={headingVariant}
         >
           <p className="text-6xl font-poppins text-purple z-10 text-center md:text-start">
-            {`<Abhishek Gupta/>`}
+            {`<Abhisek Gupta/>`}
           </p>
 
           <p className="mt-10 mb-7 font-source-code text-sm text-center md:text-start">
