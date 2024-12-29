@@ -33,76 +33,6 @@ const SocialMediaVariant = {
   },
 };
 
-const imageDivVariant = {
-  hidden: {
-    opacity: 0,
-    x: 100,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      delay: 0.6,
-      duration: 0.5,
-      type: "tween",
-      staggerChildren: 0.5,
-    },
-  },
-};
-
-const imageDesktopVariant = {
-  hidden: {
-    opacity: 0,
-    x: 100,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      opacity: {
-        delay: 1, // Start the opacity animation after 0.6s
-        duration: 1, // Opacity transition lasts 1 second
-      },
-      x: {
-        delay: 0.6,
-        duration: 1, // Same as opacity
-        type: "tween",
-      },
-    },
-  },
-};
-
-const imageMobileVariant = {
-  hidden: {
-    opacity: 0,
-    scale: 0,
-    boxShadow: "0px 0px 0px 0px rgba(144, 103, 198, 1)",
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    boxShadow: "0px 0px 15px 25px rgba(144, 103, 198, 0.5)",
-    transition: {
-      opacity: {
-        delay: 0.5, // Start the opacity animation after 0.6s
-        duration: 1, // Opacity transition lasts 1 second
-        type: "easeIn",
-      },
-      scale: {
-        delay: 0.5,
-        duration: 1, // Same as opacity
-        type: "tween",
-      },
-      boxShadow: {
-        type: "spring",
-        stifness: 100,
-        duration: 0.5,
-        delay: 1.5,
-      },
-    },
-  },
-};
-
 const Landing = ({ setSelectedPage, language }) => {
   const largeScreens = useMediaQuery("(min-width: 1060px)");
 
@@ -113,25 +43,18 @@ const Landing = ({ setSelectedPage, language }) => {
     >
       <div className="md:w-screen basis-3/5 z-10 mt-20 md:mt-32 flex justify-center md:order-2">
         {largeScreens ? (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={imageDivVariant}
+          <div
             className="relative z-0 ml-20 before:absolute before:-top-20 before:-left-20 before:rounded-t-[150px]
                         before:w-full before:max-w-[300px] md:before:max-w-[400px] before:h-full before:border-2 before:border-purple before:z-[-1]"
           >
-            <motion.img
-              variants={imageDesktopVariant}
+            <img
               alt="profile"
               className="z-10 w-full max-w-[300px] md:max-w-[350px] rounded-t-[150px] "
               src={ProfileImage}
             />
-          </motion.div>
+          </div>
         ) : (
           <motion.img
-            initial="hidden"
-            animate="visible"
-            variants={imageMobileVariant}
             alt="profile"
             className="z-10 w-full max-w-[300px] md:max-w-[600px] rounded-t-[50px] rounded-b-[50px]"
             src={ProfileImage}
