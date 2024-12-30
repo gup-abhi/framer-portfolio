@@ -1,10 +1,11 @@
 import useMediaQuery from "../hooks/useMediaQuery";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import LineGradient from "../components/LineGradient";
 import { technologies } from "../utils/tech";
 import { texts } from "./../utils/texts";
 import ProfileImage from "../assets/profile2.png";
 import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
+import { useRef } from "react";
 
 const aboutVariant = {
   hidden: { opacity: 0, x: 50 },
@@ -26,13 +27,24 @@ const technologyVariant = {
 
 const AboutMe = ({ language }) => {
   const mediumScreens = useMediaQuery("(min-width: 1060px)");
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const scale = useTransform(scrollYProgress, [0.2, 0.5], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0.1, 0.5], [0, 1]);
+  const x = useTransform(scrollYProgress, [0.1, 0.5], [-500, 0]); // Maps 0-1 progress to 0-100px
 
   return (
     <section className="md:pt-10 pb-24 min-h-screen" id="about">
       <div className="md:flex md:justify-between md:gap-16 mt-32 ">
         <div className="mt-16 md:mt-0">
           {mediumScreens ? (
-            <div
+            <motion.div
+              ref={ref}
+              style={{ scale: scale, opacity: opacity, x: x }}
               className="relative z-0 mr-20 before:absolute before:-top-10 before:-right-10 before:rounded-3xl
             before:w-full before:max-w-[400] md:before:max-w-[400] before:h-full before:border-2 before:border-purple before:z-[-1]"
             >
@@ -41,7 +53,7 @@ const AboutMe = ({ language }) => {
                 className="z-10 max-w-sm rounded-3xl shadow-xl"
                 src={ProfileImage}
               />
-            </div>
+            </motion.div>
           ) : (
             <></>
           )}
