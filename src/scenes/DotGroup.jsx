@@ -1,28 +1,28 @@
-import AnchorLink from "react-anchor-link-smooth-scroll";
+// import AnchorLink from "react-anchor-link-smooth-scroll";
 import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
 import { motion } from "framer-motion";
 
-const dotGroupVariant = {
+const dotVariant = (delay) => ({
   hidden: { y: -100, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
       y: {
-        delay: 1.5,
+        delay: 0.5 * delay,
         duration: 0.5,
         type: "spring",
         stiffness: 75,
         weight: 50,
       },
       opacity: {
-        delay: 1.5,
+        delay: 0.5 * delay,
         duration: 0.5,
         ease: "easeInOut",
       },
     },
   },
-};
+});
 
 const DotGroup = ({ selectedPage, setSelectedPage }) => {
   const links = [
@@ -38,15 +38,19 @@ const DotGroup = ({ selectedPage, setSelectedPage }) => {
 
   return (
     <motion.div
-      variants={dotGroupVariant}
-      initial="hidden"
-      animate="visible"
+      transition={{
+        staggerChildren: 0.2,
+      }}
       className="flex flex-col gap-6 fixed top-[60%] right-7"
     >
       {links.map((link, index) => (
-        <AnchorLink
+        <motion.a
+          initial="hidden"
+          animate="visible"
+          variants={dotVariant(5 - 1 - index)}
           key={link.label}
           href={link.href}
+          viewport={{ once: true, amout: 1 }}
           className={`${
             selectedPage === link.label ? selectedClass : "bg-purple"
           } w-3 h-3 rounded-full`}

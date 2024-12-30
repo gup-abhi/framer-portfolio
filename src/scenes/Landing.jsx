@@ -66,7 +66,7 @@ const Landing = ({ setSelectedPage, language }) => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 1 }}
           variants={headingVariant}
         >
           <p className="text-6xl font-poppins text-purple z-10 text-center md:text-start">
@@ -82,7 +82,7 @@ const Landing = ({ setSelectedPage, language }) => {
           className="flex mt-5 justify-center md:justify-start"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 1 }}
           variants={buttonVariant}
         >
           <AnchorLink
@@ -114,7 +114,7 @@ const Landing = ({ setSelectedPage, language }) => {
           className="flex mt-5 justify-center md:justify-start"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 1 }}
           variants={SocialMediaVariant}
         >
           <SocialMediaIcons />
