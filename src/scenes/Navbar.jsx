@@ -61,6 +61,13 @@ const Navbar = ({ selectedPage, setSelectedPage, language, setLanguage }) => {
     const lowerPage = page.toLowerCase();
     const isActive = selectedPage === lowerPage;
     
+    // Determine text color based on navbar state and active status
+    const getTextColor = () => {
+      if (isActive) return "text-white";
+      if (hasShadow) return "text-deep-purple group-hover:text-purple";
+      return "text-white group-hover:text-pink";
+    };
+    
     return (
       <AnchorLink
         className={`relative group px-3 py-2 rounded-lg transition-all duration-200 block w-full text-left z-30 ${
@@ -73,7 +80,7 @@ const Navbar = ({ selectedPage, setSelectedPage, language, setLanguage }) => {
         href={`#${lowerPage}`}
         onClick={() => handleLinkClick(page)}
       >
-        <span className="relative z-10 font-medium text-white">{label}</span>
+        <span className={`relative z-10 font-medium ${getTextColor()}`}>{label}</span>
         {!isActive && (
           <div className="absolute inset-0 bg-gradient-to-r from-purple/20 to-pink/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 -z-10"></div>
         )}
