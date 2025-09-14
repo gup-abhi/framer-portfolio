@@ -1,4 +1,4 @@
-// import AnchorLink from "react-anchor-link-smooth-scroll";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
 import { motion } from "framer-motion";
 
@@ -44,21 +44,24 @@ const DotGroup = ({ selectedPage, setSelectedPage }) => {
       className="flex flex-col gap-6 fixed top-[60%] right-7"
     >
       {links.map((link, index) => (
-        <motion.a
+        <motion.div
           initial="hidden"
           animate="visible"
           variants={dotVariant(5 - 1 - index)}
           key={link.label}
-          href={link.href}
           viewport={{ once: true, amout: 1 }}
-          className={`${
-            selectedPage === link.label ? selectedClass : "bg-purple"
-          } w-3 h-3 rounded-full`}
-          onClick={() => {
-            setSelectedPage(link.label);
-            handleEventAnalytics("Dot Group", `Clicked ${link.label} dot`);
-          }}
-        />
+        >
+          <AnchorLink
+            href={link.href}
+            className={`${
+              selectedPage === link.label ? selectedClass : "bg-purple"
+            } w-3 h-3 rounded-full block`}
+            onClick={() => {
+              setSelectedPage(link.label);
+              handleEventAnalytics("Dot Group", `Clicked ${link.label} dot`);
+            }}
+          />
+        </motion.div>
       ))}
     </motion.div>
   );

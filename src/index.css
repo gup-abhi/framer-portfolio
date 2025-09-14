@@ -12,12 +12,119 @@ body,
   height: 100%;
   @apply text-white;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 * {
   margin: 0;
-  scroll-behavior: smooth;
   box-sizing: border-box;
+}
+
+/* Performance optimizations */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  * {
+    scroll-behavior: auto;
+  }
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid #9067c6;
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #17072b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #9067c6, #f574b9);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #f574b9, #9067c6);
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Gradient text animation */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-text {
+  background: linear-gradient(-45deg, #9067c6, #f574b9, #5961df, #9067c6);
+  background-size: 400% 400%;
+  animation: gradient-shift 3s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hover glow effect */
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(144, 103, 198, 0.3);
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced smooth scrolling with momentum */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+  -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
+}
+
+/* Improve scroll performance on all elements */
+* {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Optimize for smooth scrolling */
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Smooth scrolling for specific containers */
+.app {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 .lang-image {
@@ -138,6 +245,169 @@ body,
     right: 0;
     top: 20px;
   }
+}
+
+/* Modern Hero Section Enhancements */
+
+/* Ensure hero section is below navbar */
+#home {
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+  padding-top: 8rem; /* Account for fixed navbar height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  #home {
+    padding-top: 7rem; /* Increased padding for mobile navbar */
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 480px) {
+  #home {
+    padding-top: 6.5rem; /* Extra padding for smaller mobile screens */
+  }
+}
+
+/* Additional mobile adjustments */
+@media (max-width: 640px) {
+  #home {
+    padding-top: 7.5rem; /* Extra padding for small mobile screens */
+  }
+}
+
+/* Ensure proper spacing on very small screens */
+@media (max-width: 375px) {
+  #home {
+    padding-top: 8rem; /* Maximum padding for very small screens */
+  }
+}
+
+/* Hero content centering */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .hero-content {
+    align-items: flex-start;
+    text-align: left;
+    justify-content: center;
+  }
+}
+
+/* Ensure proper grid layout on desktop */
+@media (min-width: 1024px) {
+  .hero-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4rem !important;
+    align-items: center !important;
+  }
+}
+
+/* Animated gradient background */
+.hero-bg {
+  background: linear-gradient(-45deg, #17072b, #9067c6, #8d86c9, #f574b9);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* Floating animation for decorative elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Glow effect for interactive elements */
+.glow-on-hover {
+  transition: all 0.3s ease;
+}
+
+.glow-on-hover:hover {
+  box-shadow: 0 0 30px rgba(144, 103, 198, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Modern glassmorphism effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Text gradient animation */
+.text-gradient-animated {
+  background: linear-gradient(-45deg, #9067c6, #f574b9, #5961df, #8d86c9);
+  background-size: 400% 400%;
+  animation: gradient-shift 3s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Modern button hover effects */
+.modern-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.modern-button:hover::before {
+  left: 100%;
+}
+
+/* Parallax effect for background elements */
+.parallax-slow {
+  animation: parallax-slow 20s linear infinite;
+}
+
+.parallax-medium {
+  animation: parallax-medium 15s linear infinite;
+}
+
+.parallax-fast {
+  animation: parallax-fast 10s linear infinite;
+}
+
+@keyframes parallax-slow {
+  0% { transform: translateX(-100px) translateY(-100px); }
+  100% { transform: translateX(100px) translateY(100px); }
+}
+
+@keyframes parallax-medium {
+  0% { transform: translateX(-50px) translateY(-50px); }
+  100% { transform: translateX(50px) translateY(50px); }
+}
+
+@keyframes parallax-fast {
+  0% { transform: translateX(-25px) translateY(-25px); }
+  100% { transform: translateX(25px) translateY(25px); }
 }
 
 /* loading  */

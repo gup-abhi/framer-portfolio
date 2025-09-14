@@ -8,6 +8,8 @@ import Contact from "./scenes/Contact";
 import Footer from "./scenes/Footer";
 
 import LineGradient from "./components/LineGradient";
+import ScrollProgress from "./components/ScrollProgress";
+import BackToTop from "./components/BackToTop";
 import useMediaQuery from "./hooks/useMediaQuery";
 import { useGoogleAnalytics } from "./hooks/useGoogleAnalytics";
 
@@ -24,15 +26,23 @@ function App() {
   useGoogleAnalytics(selectedPage);
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      if (window.scrollY === 0) {
-        setTopOfPage(true);
-      } else {
-        setTopOfPage(false);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (window.scrollY === 0) {
+            setTopOfPage(true);
+          } else {
+            setTopOfPage(false);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -44,6 +54,7 @@ function App() {
     <>
       {!isLoading ? (
         <div className="app bg-deep-purple">
+          <ScrollProgress />
           <Navbar
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
@@ -60,6 +71,8 @@ function App() {
               />
             )}
             <motion.div
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
               margin="0 0 -200px 0"
               amount="all"
               onViewportEnter={() => setSelectedPage("home")}
@@ -72,6 +85,8 @@ function App() {
 
           <div className="w-5/6 mx-auto">
             <motion.div
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
               margin="0 0 -200px 0"
               amount="all"
               onViewportEnter={() => setSelectedPage("about")}
@@ -84,6 +99,8 @@ function App() {
 
           <div className="w-5/6 mx-auto">
             <motion.div
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
               margin="0 0 -200px 0"
               amount="all"
               onViewportEnter={() => setSelectedPage("skills")}
@@ -96,6 +113,8 @@ function App() {
 
           <div className="w-5/6 mx-auto">
             <motion.div
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
               margin="0 0 -200px 0"
               amount="all"
               onViewportEnter={() => setSelectedPage("projects")}
@@ -108,6 +127,8 @@ function App() {
 
           <div className="w-5/6 mx-auto">
             <motion.div
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
               margin="0 0 -200px 0"
               amount="all"
               onViewportEnter={() => setSelectedPage("contact")}
@@ -117,6 +138,7 @@ function App() {
           </div>
 
           <Footer />
+          <BackToTop />
         </div>
       ) : (
         <>
