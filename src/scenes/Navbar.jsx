@@ -29,12 +29,12 @@ const translations = {
     projects: "projects",
     contact: "contact",
   },
-  pt: {
-    home: "início",
-    about: "sobre",
-    skills: "habilidades",
-    projects: "projetos",
-    contact: "contato",
+  fr: {
+    home: "accueil",
+    about: "à propos",
+    skills: "compétences",
+    projects: "projets",
+    contact: "contact",
   },
 };
 
@@ -205,12 +205,12 @@ const Navbar = ({ selectedPage, setSelectedPage, language, setLanguage }) => {
                   </button>
                   <button
                     className={`w-full px-4 py-3 text-left hover:bg-white/10 transition-all duration-200 flex items-center gap-2 ${
-                      language === 'pt' ? 'bg-gradient-to-r from-purple to-pink text-white' : 'text-gray-700 hover:text-white'
+                      language === 'fr' ? 'bg-gradient-to-r from-purple to-pink text-white' : 'text-gray-700 hover:text-white'
                     }`}
-                    onClick={() => handleLanguageChange('pt')}
+                    onClick={() => handleLanguageChange('fr')}
                   >
-                    <span className="text-sm">🇧🇷</span>
-                    <span className="font-medium">Português</span>
+                    <span className="text-sm">🇫🇷</span>
+                    <span className="font-medium">Français</span>
                   </button>
                 </motion.div>
               )}
@@ -247,12 +247,12 @@ const Navbar = ({ selectedPage, setSelectedPage, language, setLanguage }) => {
                   </button>
                   <button
                     className={`w-full px-4 py-3 text-left hover:bg-white/10 transition-all duration-200 flex items-center gap-2 ${
-                      language === 'pt' ? 'bg-gradient-to-r from-purple to-pink text-white' : 'text-gray-700 hover:text-white'
+                      language === 'fr' ? 'bg-gradient-to-r from-purple to-pink text-white' : 'text-gray-700 hover:text-white'
                     }`}
-                    onClick={() => handleLanguageChange('pt')}
+                    onClick={() => handleLanguageChange('fr')}
                   >
-                    <span className="text-sm">🇧🇷</span>
-                    <span className="font-medium">Português</span>
+                    <span className="text-sm">🇫🇷</span>
+                    <span className="font-medium">Français</span>
                   </button>
                 </motion.div>
               )}

@@ -1,48 +1,48 @@
 export const texts = {
-  pt: {
+  fr: {
     landing: {
-      subtitle: "Desenvolvedora Full Stack.",
-      contact: "Fale Comigo",
-      talk: "Vamos conversar.",
+      subtitle: "Développeuse Full Stack.",
+      contact: "Contactez-moi",
+      talk: "Parlons-en.",
     },
     navbar: {
-      home: "Início",
-      about: "Sobre",
-      skills: "Habilidades",
-      projects: "Projetos",
-      contact: "Contato",
+      home: "Accueil",
+      about: "À propos",
+      skills: "Compétences",
+      projects: "Projets",
+      contact: "Contact",
     },
     about: {
-      title: "<sobre/>",
-      text: "Olá! Meu nome é Beatriz Neaime, sou Engenheira de Computação e desenvolvedora web full stack na",
+      title: "<à propos/>",
+      text: "Bonjour ! Je m'appelle Beatriz Neaime, je suis Ingénieure en Informatique et développeuse web full stack chez",
       empresa: " IAtrix",
       link: "https://iatrix.com.br",
       text2:
-        ", uma nova empresa de tecnologia. Comecei a aprender desenvolvimento web durante a pandemia, através de cursos online para aprender o básico e aprimorar minhas habilidades, garantindo que aprendi o suficiente para seguir em frente e tentar as tecnologias mais recentes. Aqui estão algumas tecnologias com as quais estou familiarizada:",
+        ", une nouvelle entreprise de technologie. J'ai commencé à apprendre le développement web pendant la pandémie, à travers des cours en ligne pour apprendre les bases et améliorer mes compétences, m'assurant d'apprendre suffisamment pour aller de l'avant et essayer les technologies les plus récentes. Voici quelques technologies avec lesquelles je suis familière :",
     },
     skills: {
-      title: "<habilidades/>",
-      text: `Desde o início da minha jornada como desenvolvedora, aprimorei minhas soft skills, sempre buscando ser uma profissional melhor. `,
+      title: "<compétences/>",
+      text: `Depuis le début de mon parcours en tant que développeuse, j'ai amélioré mes compétences relationnelles, cherchant toujours à être une meilleure professionnelle. `,
       1: {
-        title: "aprendizado contínuo",
-        text: "A tecnologia nunca para de se atualizar, é por isto que aqueles que trabalham com tecnologia não devem parar de se atualizar também.",
+        title: "apprentissage continu",
+        text: "La technologie ne cesse jamais de se mettre à jour, c'est pourquoi ceux qui travaillent avec la technologie ne doivent pas arrêter de se mettre à jour non plus.",
       },
       2: {
-        title: "comunicativa",
-        text: "Não importa sua profissão, comunicação é sempre uma necessidade em qualquer ramo.",
+        title: "communicative",
+        text: "Peu importe votre profession, la communication est toujours un besoin dans n'importe quel domaine.",
       },
       3: {
-        title: "mente aberta",
-        text: "Quando você trabalha para pessoas, você precisa aceitar novas ideias de clientes ou colegas de equipe e ser capaz de trabalhar nelas.",
+        title: "esprit ouvert",
+        text: "Quand vous travaillez pour des personnes, vous devez accepter de nouvelles idées de clients ou de collègues d'équipe et être capable de travailler dessus.",
       },
     },
     projects: {
-      title: "<projetos/>",
-      text: "Projetos são maneiras importantes de melhorar suas habilidades e mostrar o que você é capaz de fazer. Aqui estão alguns dos meus projetos mais recentes:",
+      title: "<projets/>",
+      text: "Les projets sont des moyens importants d'améliorer vos compétences et de montrer ce dont vous êtes capable. Voici quelques-uns de mes projets les plus récents :",
     },
     contact: {
-      title: "<contato/>",
-      btn: "Envie uma mensagem",
+      title: "<contact/>",
+      btn: "Envoyer un message",
     },
   },
   en: {

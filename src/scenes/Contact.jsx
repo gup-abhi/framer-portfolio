@@ -85,10 +85,10 @@ const Contact = ({ language }) => {
       setLoading(false);
       setAlert((prev) => ({
         ...prev,
-        title: language === "pt" ? "Erro" : "Error",
+        title: language === "fr" ? "Erreur" : "Error",
         text:
-          language === "pt"
-            ? "Algo deu errado. Tente novamente mais tarde"
+          language === "fr"
+            ? "Quelque chose s'est mal passé. Réessayez plus tard"
             : "Something went wrong. Try again later",
         type: "error",
         status: true,
@@ -118,10 +118,10 @@ const Contact = ({ language }) => {
     if (response.status === 200) {
       setAlert((prev) => ({
         ...prev,
-        title: language === "pt" ? "Sucesso" : "Success",
+        title: language === "fr" ? "Succès" : "Success",
         text:
-          language === "pt"
-            ? "Email enviado com sucesso!"
+          language === "fr"
+            ? "Email envoyé avec succès!"
             : "Email sent successfully!",
         type: "success",
         status: true,
@@ -130,10 +130,10 @@ const Contact = ({ language }) => {
     } else {
       setAlert((prev) => ({
         ...prev,
-        title: language === "pt" ? "Erro" : "Error",
+        title: language === "fr" ? "Erreur" : "Error",
         text:
-          language === "pt"
-            ? "Algo deu errado. Tente novamente mais tarde"
+          language === "fr"
+            ? "Quelque chose s'est mal passé. Réessayez plus tard"
             : "Something went wrong. Try again later",
         type: "error",
         status: true,
@@ -219,12 +219,12 @@ const Contact = ({ language }) => {
                 {/* Name Input */}
                 <motion.div variants={floatingVariant} className="space-y-2">
                   <label className="text-sm font-medium text-gray-300 uppercase tracking-wider">
-                    {language === "pt" ? "Nome" : "Name"}
+                    {language === "fr" ? "Nom" : "Name"}
                   </label>
                   <input
                     className="w-full bg-white/5 border border-white/20 rounded-xl font-medium placeholder-gray-400 text-white p-4 focus:outline-none focus:border-purple focus:bg-white/10 transition-all duration-300 backdrop-blur-sm"
                     type="text"
-                    placeholder={language === "pt" ? "Seu nome completo" : "Your full name"}
+                    placeholder={language === "fr" ? "Votre nom complet" : "Your full name"}
                     {...register("name", {
                       required: true,
                       maxLength: 100,
@@ -233,8 +233,8 @@ const Contact = ({ language }) => {
                   {errors.name && (
                     <p className="text-red-400 text-sm mt-1">
                       {errors.name.type === "required" &&
-                        (language === "pt"
-                          ? "Este campo é obrigatório"
+                        (language === "fr"
+                          ? "Ce champ est obligatoire"
                           : "This field is required.")}
                       {errors.name.type === "maxLength" && "Max length is 100 char."}
                     </p>
@@ -258,12 +258,12 @@ const Contact = ({ language }) => {
                   {errors.email && (
                     <p className="text-red-400 text-sm mt-1">
                       {errors.email.type === "required" &&
-                        (language === "pt"
-                          ? "Este campo é obrigatório"
+                        (language === "fr"
+                          ? "Ce champ est obligatoire"
                           : "This field is required.")}
                       {errors.email.type === "pattern" &&
-                        (language === "pt"
-                          ? "Endereço de email inválido"
+                        (language === "fr"
+                          ? "Adresse email invalide"
                           : "Invalid email address.")}
                     </p>
                   )}
@@ -272,12 +272,12 @@ const Contact = ({ language }) => {
                 {/* Message Input */}
                 <motion.div variants={floatingVariant} className="space-y-2">
                   <label className="text-sm font-medium text-gray-300 uppercase tracking-wider">
-                    {language === "pt" ? "Mensagem" : "Message"}
+                    {language === "fr" ? "Message" : "Message"}
                   </label>
                   <textarea
                     className="w-full bg-white/5 border border-white/20 rounded-xl font-medium placeholder-gray-400 text-white p-4 focus:outline-none focus:border-purple focus:bg-white/10 transition-all duration-300 resize-none backdrop-blur-sm"
                     name="message"
-                    placeholder={language === "pt" ? "Conte-me sobre seu projeto..." : "Tell me about your project..."}
+                    placeholder={language === "fr" ? "Parlez-moi de votre projet..." : "Tell me about your project..."}
                     rows="5"
                     {...register("message", {
                       required: true,
@@ -286,8 +286,8 @@ const Contact = ({ language }) => {
                   />
                   {errors.message && (
                     <p className="text-red-400 text-sm mt-1">
-                      {errors.message.type === "required" && language === "pt"
-                        ? "Este campo é obrigatório"
+                      {errors.message.type === "required" && language === "fr"
+                        ? "Ce champ est obligatoire"
                         : "This field is required."}
                       {errors.message.type === "maxLength" &&
                         "Max length is 2000 char."}
