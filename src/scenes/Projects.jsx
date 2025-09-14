@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import LineGradient from "../components/LineGradient";
 import Project from "../components/Project";
 import { projects } from "../utils/projects";
 import { texts } from "../utils/texts";

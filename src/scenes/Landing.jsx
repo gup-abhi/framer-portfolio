@@ -73,9 +73,9 @@ const Landing = ({ setSelectedPage, language }) => {
   const typewriterTexts = [
     texts[language].landing.subtitle,
     "Full Stack Developer",
-    "React Specialist",
-    "Problem Solver",
-    "Tech Enthusiast"
+    "AI Enthusiast",
+    "Cybersecurity Enthusiast",
+    "Coffee + Code = Clean Code"
   ];
 
   return (

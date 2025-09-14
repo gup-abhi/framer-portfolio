@@ -15,10 +15,10 @@ export const texts = {
     about: {
       title: "<à propos/>",
       text: "Bonjour ! Je m'appelle Beatriz Neaime, je suis Ingénieure en Informatique et développeuse web full stack chez",
-      empresa: " IAtrix",
-      link: "https://iatrix.com.br",
+      empresa: " Tata Consultancy Services.",
+      link: "https://www.tcs.com/",
       text2:
-        ", une nouvelle entreprise de technologie. J'ai commencé à apprendre le développement web pendant la pandémie, à travers des cours en ligne pour apprendre les bases et améliorer mes compétences, m'assurant d'apprendre suffisamment pour aller de l'avant et essayer les technologies les plus récentes. Voici quelques technologies avec lesquelles je suis familière :",
+        ", une nouvelle entreprise de technologie. J'ai commencé à apprendre le développement web pendant la pandémie, à travers des cours en ligne pour apprendre les bases et améliorer mes compétences, m'assurant d'apprendre suffisamment pour aller de l'avant et essayer les technologies les plus récentes.",
     },
     skills: {
       title: "<compétences/>",
@@ -64,7 +64,7 @@ export const texts = {
       empresa: " Tata Consultancy Services.",
       link: "https://www.tcs.com/",
       text2:
-        " I specialize in creating innovative, user-centric solutions using technologies like Java, Python, JavaScript, and various web development frameworks. My expertise spans the entire software development lifecycle, from concept to deployment, with a strong focus on building efficient, scalable, and maintainable systems. I thrive on solving complex problems and constantly strive to enhance the user experience through clean, optimized code. When I’m not coding, you’ll find me exploring new technologies or collaborating with teams to drive impactful projects forward. Here are some technologies I'm proficient in:",
+        " I specialize in creating innovative, user-centric solutions using technologies like Java, Python, JavaScript, and various web development frameworks. My expertise spans the entire software development lifecycle, from concept to deployment, with a strong focus on building efficient, scalable, and maintainable systems. I thrive on solving complex problems and constantly strive to enhance the user experience through clean, optimized code. When I’m not coding, you’ll find me exploring new technologies or collaborating with teams to drive impactful projects forward.",
     },
     skills: {
       title: "<skills/>",

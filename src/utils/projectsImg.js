@@ -1,13 +1,11 @@
-import arteCaderno from '../assets/projects/arte.png';
-import brFinancas from '../assets/projects/br-finanças.png';
-import patinhasFelizes from '../assets/projects/patinhas-felizes.png';
-import advice from '../assets/projects/advice.png';
-import splitter from '../assets/projects/splitter.png';
+import aiJournaling from '../assets/projects/AI-Journaling.png';
+import chatApp from '../assets/projects/Chat-App.png';
+import expenseTracker from '../assets/projects/expense-tracker.png';
+import topMovies from '../assets/projects/top-250-movies.png';
 
 export const projImg = {
-  arte: arteCaderno,
-  brFinancas: brFinancas,
-  patinhasFelizes: patinhasFelizes,
-  advice: advice,
-  splitter: splitter
+  'ai-journal': aiJournaling,
+  'chat-app': chatApp,
+  'expense': expenseTracker,
+  'top-movies': topMovies
 }

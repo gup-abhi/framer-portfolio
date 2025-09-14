@@ -1,18 +1,8 @@
 import { motion } from "framer-motion";
 import useMediaQuery from "./../hooks/useMediaQuery";
 import { FaGithub, FaEye, FaExternalLinkAlt, FaStar, FaCode } from "react-icons/fa";
-import expense from "../assets/projects/expense-tracker.png";
-import todo from "../assets/projects/todo-app.png";
-import movies from "../assets/projects/top-250-movies.png";
-import blog from "../assets/projects/django-blog.png";
 import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
-
-const images = {
-  expense,
-  todo,
-  "top-250-movies": movies,
-  "django-blog": blog,
-};
+import { projImg } from '../utils/projectsImg'
 
 const Project = ({ project, language, index }) => {
   const desktop = useMediaQuery("(min-width: 768px)");
@@ -48,7 +38,7 @@ const Project = ({ project, language, index }) => {
       {/* Project Image */}
       <div className="relative h-64 overflow-hidden">
         <img 
-          src={images[project.img]} 
+          src={projImg[project.img]} 
           alt={project.title}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           loading="lazy"

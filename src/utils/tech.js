@@ -7,7 +7,8 @@ export const technologies = [
   "Bootstrap",
   "Material-UI",
   "Express.js",
-  "Styled-Components",
+  "Radix UI",
+  "Shadcn UI",
   "Node.js",
   "PostgreSQL",
   "MongoDB",
@@ -22,11 +23,12 @@ export const technologies = [
   "TailwindCSS",
   "Framer Motion",
   "REST APIs",
-  "GraphQL",
   "Docker",
   "AWS",
-  "Firebase",
   "Redux",
-  "Next.js",
-  "Vue.js"
+  "Zustand",
+  "React Native",
+  "Expo",
+  "Supabase",
+  "OAuth"
 ];
