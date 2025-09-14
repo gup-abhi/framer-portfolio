@@ -1,5 +1,5 @@
 import useMediaQuery from "../hooks/useMediaQuery";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import SocialMediaIcons from "../components/SocialMediaIcons";
 import Typewriter from "../components/Typewriter";
@@ -60,6 +60,16 @@ const floatingVariants = {
 const Landing = ({ setSelectedPage, language }) => {
   const largeScreens = useMediaQuery("(min-width: 1060px)");
   
+  // Parallax scroll setup
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, -150]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -100]);
+  const y3 = useTransform(scrollY, [0, 500], [0, -200]);
+  const y4 = useTransform(scrollY, [0, 500], [0, -50]);
+  const y5 = useTransform(scrollY, [0, 500], [0, -75]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0.3]);
+  const scale = useTransform(scrollY, [0, 300], [1, 0.8]);
+  
   const typewriterTexts = [
     texts[language].landing.subtitle,
     "Full Stack Developer",
@@ -77,11 +87,23 @@ const Landing = ({ setSelectedPage, language }) => {
       <div className="absolute inset-0 bg-gradient-to-br from-deep-purple via-purple/20 to-pink/10"></div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple/30 via-transparent to-transparent"></div>
       
-      {/* Floating Orbs with enhanced animations */}
-      <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-purple/20 to-pink/20 rounded-full blur-xl float-animation parallax-slow"></div>
-      <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-blue/20 to-purple/20 rounded-full blur-xl float-animation parallax-medium delay-1000"></div>
-      <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-r from-pink/20 to-purple/20 rounded-full blur-lg float-animation parallax-fast delay-500"></div>
-      <div className="absolute top-1/3 right-1/4 w-20 h-20 bg-gradient-to-r from-blue/15 to-purple/15 rounded-full blur-lg float-animation parallax-slow delay-2000"></div>
+      {/* Floating Orbs with parallax effect */}
+      <motion.div 
+        className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-purple/20 to-pink/20 rounded-full blur-xl float-animation"
+        style={{ y: y1 }}
+      ></motion.div>
+      <motion.div 
+        className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-blue/20 to-purple/20 rounded-full blur-xl float-animation delay-1000"
+        style={{ y: y2 }}
+      ></motion.div>
+      <motion.div 
+        className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-r from-pink/20 to-purple/20 rounded-full blur-lg float-animation delay-500"
+        style={{ y: y3 }}
+      ></motion.div>
+      <motion.div 
+        className="absolute top-1/3 right-1/4 w-20 h-20 bg-gradient-to-r from-blue/15 to-purple/15 rounded-full blur-lg float-animation delay-2000"
+        style={{ y: y4 }}
+      ></motion.div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh] hero-grid">
@@ -94,6 +116,7 @@ const Landing = ({ setSelectedPage, language }) => {
             animate="visible"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
+            style={{ y: y5, opacity, scale }}
           >
             {/* Greeting */}
             <motion.div 
@@ -188,11 +211,18 @@ const Landing = ({ setSelectedPage, language }) => {
             animate="visible"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
+            style={{ y: y2, scale }}
           >
             <div className="relative">
-              {/* Decorative Elements */}
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-purple/20 to-pink/20 rounded-full blur-xl"></div>
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-br from-blue/20 to-purple/20 rounded-full blur-xl"></div>
+              {/* Decorative Elements with parallax */}
+              <motion.div 
+                className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-purple/20 to-pink/20 rounded-full blur-xl"
+                style={{ y: y1 }}
+              ></motion.div>
+              <motion.div 
+                className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-br from-blue/20 to-purple/20 rounded-full blur-xl"
+                style={{ y: y3 }}
+              ></motion.div>
               
               {/* Main Image Container */}
               <motion.div 
@@ -215,13 +245,19 @@ const Landing = ({ setSelectedPage, language }) => {
                       />
                     </div>
                     
-                    {/* Floating Tech Icons */}
-                    <div className="absolute -top-2 -right-2 w-12 h-12 bg-gradient-to-r from-purple to-pink rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                    {/* Floating Tech Icons with parallax */}
+                    <motion.div 
+                      className="absolute -top-2 -right-2 w-12 h-12 bg-gradient-to-r from-purple to-pink rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg"
+                      style={{ y: y4 }}
+                    >
                       💻
-                    </div>
-                    <div className="absolute -bottom-2 -left-2 w-12 h-12 bg-gradient-to-r from-blue to-purple rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                    </motion.div>
+                    <motion.div 
+                      className="absolute -bottom-2 -left-2 w-12 h-12 bg-gradient-to-r from-blue to-purple rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg"
+                      style={{ y: y5 }}
+                    >
                       ⚡
-                    </div>
+                    </motion.div>
                   </div>
                 ) : (
                   <div className="relative">
