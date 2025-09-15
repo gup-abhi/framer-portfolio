@@ -44,7 +44,7 @@ function App() {
   }, []);
   
   // Initialize tracking hooks
-  useGoogleAnalytics(selectedPage);
+  useGoogleAnalytics({ selectedPage });
   useErrorTracking();
   usePerformanceMonitoring();
   useNetworkMonitoring();

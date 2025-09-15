@@ -25,11 +25,12 @@ export const initializeGA = () => {
 // Enhanced page view tracking
 export const useGoogleAnalytics = ({ selectedPage }) => {
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && selectedPage) {
+      const pageTitle = selectedPage.charAt(0).toUpperCase() + selectedPage.slice(1);
       ReactGA.send({ 
         hitType: "pageview", 
         page: `/${selectedPage}`,
-        title: `Portfolio - ${selectedPage.charAt(0).toUpperCase() + selectedPage.slice(1)}`
+        title: `Portfolio - ${pageTitle}`
       });
     }
   }, [selectedPage]);
