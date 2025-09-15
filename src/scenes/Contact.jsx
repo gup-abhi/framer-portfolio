@@ -6,7 +6,11 @@ import { texts } from "../utils/texts";
 import { useState, useRef } from "react";
 import Loading from "../components/Loading";
 import Alert from "./../components/Alert";
-import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
+import { 
+  handleEventAnalytics, 
+  trackFormInteraction, 
+  trackUserInteraction 
+} from "../hooks/useGoogleAnalytics";
 
 const headingVariant = {
   hidden: { opacity: 0, y: -50 },
@@ -229,6 +233,8 @@ const Contact = ({ language }) => {
                       required: true,
                       maxLength: 100,
                     })}
+                    onFocus={() => trackFormInteraction("Contact Form", "Field Focus", "Name")}
+                    onChange={() => trackFormInteraction("Contact Form", "Field Change", "Name")}
                   />
                   {errors.name && (
                     <p className="text-red-400 text-sm mt-1">
@@ -254,6 +260,8 @@ const Contact = ({ language }) => {
                       required: true,
                       pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                     })}
+                    onFocus={() => trackFormInteraction("Contact Form", "Field Focus", "Email")}
+                    onChange={() => trackFormInteraction("Contact Form", "Field Change", "Email")}
                   />
                   {errors.email && (
                     <p className="text-red-400 text-sm mt-1">
@@ -283,6 +291,8 @@ const Contact = ({ language }) => {
                       required: true,
                       maxLength: 2000,
                     })}
+                    onFocus={() => trackFormInteraction("Contact Form", "Field Focus", "Message")}
+                    onChange={() => trackFormInteraction("Contact Form", "Field Change", "Message")}
                   />
                   {errors.message && (
                     <p className="text-red-400 text-sm mt-1">
@@ -306,9 +316,14 @@ const Contact = ({ language }) => {
                     }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.2, type: "easeIn" }}
-                    onClick={() =>
-                      handleEventAnalytics("Contact Me Form", `Clicked submit button`)
-                    }
+                    onClick={() => {
+                      handleEventAnalytics("Contact Me Form", `Clicked submit button`);
+                      trackFormInteraction("Contact Form", "Submit Button Click");
+                      trackUserInteraction("Form Submit Click", "Contact Form", {
+                        form_name: "contact_form",
+                        action: "submit_click"
+                      });
+                    }}
                   >
                     <span className="relative z-10 uppercase tracking-wider">
                       {texts[language].contact.btn}

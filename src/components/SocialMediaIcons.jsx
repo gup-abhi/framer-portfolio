@@ -1,7 +1,12 @@
 import { BsLinkedin, BsGithub, BsInstagram } from "react-icons/bs";
 import { motion } from "framer-motion";
 import React from "react";
-import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
+import { 
+  handleEventAnalytics, 
+  trackSocialClick, 
+  trackExternalLink,
+  trackUserInteraction 
+} from "../hooks/useGoogleAnalytics";
 
 const SocialMediaIcons = () => {
   const socialMediaIconsArray = [
@@ -33,12 +38,18 @@ const SocialMediaIcons = () => {
             scale: 1.2, // Enlarge on hover
           }}
           whileTap={{ scale: 0.8 }} // Shrink slightly on click
-          onClick={() =>
+          onClick={() => {
             handleEventAnalytics(
               "Social Media",
               `Clicked social media button for ${item.type}`
-            )
-          }
+            );
+            trackSocialClick(item.type, "Click");
+            trackExternalLink(item.href, `${item.type} Social Media`);
+            trackUserInteraction("Social Media Click", item.type, {
+              platform: item.type,
+              url: item.href
+            });
+          }}
         >
           <motion.div
             initial={{ opacity: 0, y: 50 }}

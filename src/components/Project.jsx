@@ -1,7 +1,12 @@
 import { motion } from "framer-motion";
 import useMediaQuery from "./../hooks/useMediaQuery";
 import { FaGithub, FaEye, FaExternalLinkAlt, FaStar, FaCode } from "react-icons/fa";
-import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
+import { 
+  handleEventAnalytics, 
+  trackProjectInteraction, 
+  trackExternalLink,
+  trackUserInteraction 
+} from "../hooks/useGoogleAnalytics";
 import { projImg } from '../utils/projectsImg'
 
 const Project = ({ project, language, index }) => {
@@ -58,12 +63,21 @@ const Project = ({ project, language, index }) => {
               target="_blank"
               rel="noreferrer"
               className="bg-white/20 backdrop-blur-sm text-white p-4 rounded-full hover:bg-white/30 transition-colors duration-300"
-              onClick={() =>
+              onClick={() => {
                 handleEventAnalytics(
                   "Project GitHub",
                   `Clicked GitHub button for ${project.title}`
-                )
-              }
+                );
+                trackProjectInteraction(project.title, "GitHub Click", {
+                  project_category: project.category,
+                  project_technologies: project.technologies.join(", ")
+                });
+                trackExternalLink(project.git, `GitHub - ${project.title}`);
+                trackUserInteraction("Project GitHub Click", project.title, {
+                  project: project.title,
+                  action: "github_click"
+                });
+              }}
             >
               <FaGithub size={20} />
             </motion.a>
@@ -77,12 +91,21 @@ const Project = ({ project, language, index }) => {
               target="_blank"
               rel="noreferrer"
               className="bg-gradient-to-r from-purple to-pink-two text-white p-4 rounded-full hover:from-pink-two hover:to-purple transition-all duration-300"
-              onClick={() =>
+              onClick={() => {
                 handleEventAnalytics(
                   "Project Link",
                   `Clicked project link for ${project.title}`
-                )
-              }
+                );
+                trackProjectInteraction(project.title, "Live Demo Click", {
+                  project_category: project.category,
+                  project_technologies: project.technologies.join(", ")
+                });
+                trackExternalLink(project.path, `Live Demo - ${project.title}`);
+                trackUserInteraction("Project Live Demo Click", project.title, {
+                  project: project.title,
+                  action: "live_demo_click"
+                });
+              }}
             >
               <FaExternalLinkAlt size={20} />
             </motion.a>
@@ -146,12 +169,21 @@ const Project = ({ project, language, index }) => {
               target="_blank"
               rel="noreferrer"
               className="flex-1 bg-white/10 hover:bg-white/20 text-white px-4 py-3 rounded-lg flex items-center justify-center gap-2 font-medium transition-all duration-300 border border-white/20 hover:border-purple/50"
-              onClick={() =>
+              onClick={() => {
                 handleEventAnalytics(
                   "Project GitHub",
                   `Clicked GitHub button for ${project.title}`
-                )
-              }
+                );
+                trackProjectInteraction(project.title, "GitHub Button Click", {
+                  project_category: project.category,
+                  project_technologies: project.technologies.join(", ")
+                });
+                trackExternalLink(project.git, `GitHub Button - ${project.title}`);
+                trackUserInteraction("Project GitHub Button Click", project.title, {
+                  project: project.title,
+                  action: "github_button_click"
+                });
+              }}
             >
               <FaGithub size={16} />
               Code
@@ -165,12 +197,21 @@ const Project = ({ project, language, index }) => {
               target="_blank"
               rel="noreferrer"
               className="flex-1 bg-gradient-to-r from-purple to-pink-two hover:from-pink-two hover:to-purple text-white px-4 py-3 rounded-lg flex items-center justify-center gap-2 font-medium transition-all duration-300 shadow-lg hover:shadow-purple/25"
-              onClick={() =>
+              onClick={() => {
                 handleEventAnalytics(
                   "Project Link",
                   `Clicked project link for ${project.title}`
-                )
-              }
+                );
+                trackProjectInteraction(project.title, "Live Demo Button Click", {
+                  project_category: project.category,
+                  project_technologies: project.technologies.join(", ")
+                });
+                trackExternalLink(project.path, `Live Demo Button - ${project.title}`);
+                trackUserInteraction("Project Live Demo Button Click", project.title, {
+                  project: project.title,
+                  action: "live_demo_button_click"
+                });
+              }}
             >
               <FaEye size={16} />
               Live Demo

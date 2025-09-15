@@ -3,7 +3,11 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { AiOutlineCloseCircle, AiOutlineMenu } from "react-icons/ai";
 import { FaGlobe } from "react-icons/fa";
-import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
+import { 
+  handleEventAnalytics, 
+  trackUserInteraction, 
+  trackLanguageChange 
+} from "../hooks/useGoogleAnalytics";
 import { motion } from "framer-motion";
 
 const headingVariant = {
@@ -48,13 +52,23 @@ const Navbar = ({ selectedPage, setSelectedPage, language, setLanguage }) => {
     const lowerPage = page.toLowerCase();
     setSelectedPage(lowerPage);
     handleEventAnalytics("NavBar", `Clicked ${lowerPage} anchor`);
+    trackUserInteraction("Navigation Click", `Navbar - ${lowerPage}`, {
+      page: lowerPage,
+      location: "navbar"
+    });
     setTimeout(() => setMenuToggled(false), 300);
   };
 
   const handleLanguageChange = (newLanguage) => {
+    const previousLanguage = language;
     setLanguage(newLanguage);
     setShowLanguageMenu(false);
     handleEventAnalytics("Language", `Switched to ${newLanguage}`);
+    trackLanguageChange(previousLanguage, newLanguage);
+    trackUserInteraction("Language Change", `Language Switcher`, {
+      from: previousLanguage,
+      to: newLanguage
+    });
   };
 
   const Link = ({ page, label }) => {

@@ -11,11 +11,20 @@ import LineGradient from "./components/LineGradient";
 import ScrollProgress from "./components/ScrollProgress";
 import BackToTop from "./components/BackToTop";
 import useMediaQuery from "./hooks/useMediaQuery";
-import { useGoogleAnalytics } from "./hooks/useGoogleAnalytics";
+import { 
+  useGoogleAnalytics, 
+  initializeGA, 
+  trackDeviceInfo, 
+  trackTimeOnPage,
+  trackScrollDepth,
+  trackPerformance 
+} from "./hooks/useGoogleAnalytics";
+import { useErrorTracking, usePerformanceMonitoring, useNetworkMonitoring } from "./hooks/useErrorTracking";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import InitialLoading from "./components/InitialLoading";
+import AnalyticsDebugger from "./components/AnalyticsDebugger";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState("home");
@@ -23,7 +32,22 @@ function App() {
   const [language, setLanguage] = useState("en");
   const [isLoading, setIsLoading] = useState(true);
   const mediumScreens = useMediaQuery("(min-width: 1060px)");
+  
+  // Refs for tracking
+  const pageStartTime = useRef(Date.now());
+  const scrollDepthTracked = useRef(new Set());
+  
+  // Initialize Google Analytics
+  useEffect(() => {
+    initializeGA();
+    trackDeviceInfo();
+  }, []);
+  
+  // Initialize tracking hooks
   useGoogleAnalytics(selectedPage);
+  useErrorTracking();
+  usePerformanceMonitoring();
+  useNetworkMonitoring();
 
   useEffect(() => {
     let ticking = false;
@@ -36,6 +60,21 @@ function App() {
           } else {
             setTopOfPage(false);
           }
+          
+          // Track scroll depth
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const scrollPercent = (scrollTop / docHeight) * 100;
+          
+          // Track scroll milestones (25%, 50%, 75%, 100%)
+          const milestones = [25, 50, 75, 100];
+          milestones.forEach(milestone => {
+            if (scrollPercent >= milestone && !scrollDepthTracked.current.has(milestone)) {
+              trackScrollDepth(milestone);
+              scrollDepthTracked.current.add(milestone);
+            }
+          });
+          
           ticking = false;
         });
         ticking = true;
@@ -44,6 +83,31 @@ function App() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Track time on page
+  useEffect(() => {
+    const trackTime = () => {
+      const timeSpent = (Date.now() - pageStartTime.current) / 1000;
+      trackTimeOnPage(timeSpent);
+    };
+
+    // Track time when component unmounts or page changes
+    return () => {
+      trackTime();
+    };
+  }, [selectedPage]);
+
+  // Track performance metrics
+  useEffect(() => {
+    if (window.performance && window.performance.timing) {
+      const timing = window.performance.timing;
+      const loadTime = timing.loadEventEnd - timing.navigationStart;
+      const domContentLoaded = timing.domContentLoadedEventEnd - timing.navigationStart;
+      
+      trackPerformance("Page Load Time", loadTime);
+      trackPerformance("DOM Content Loaded", domContentLoaded);
+    }
   }, []);
 
   useEffect(() => {
@@ -139,6 +203,7 @@ function App() {
 
           <Footer />
           <BackToTop />
+          <AnalyticsDebugger />
         </div>
       ) : (
         <>
