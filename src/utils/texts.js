@@ -14,11 +14,11 @@ export const texts = {
     },
     about: {
       title: "<à propos/>",
-      text: "Bonjour ! Je m'appelle Beatriz Neaime, je suis Ingénieure en Informatique et développeuse web full stack chez",
+      text: "Salut, je suis Abhishek Gupta, une développeuse Full Stack passionnée basée au Canada. Je détiens une maîtrise en Informatique Appliquée de l'Université Concordia et j'ai de l'expérience en tant que développeuse Full Stack chez",
       empresa: " Tata Consultancy Services.",
       link: "https://www.tcs.com/",
       text2:
-        ", une nouvelle entreprise de technologie. J'ai commencé à apprendre le développement web pendant la pandémie, à travers des cours en ligne pour apprendre les bases et améliorer mes compétences, m'assurant d'apprendre suffisamment pour aller de l'avant et essayer les technologies les plus récentes.",
+        " Je me spécialise dans la création de solutions innovantes et centrées sur l'utilisateur en utilisant des technologies comme Java, Python, JavaScript et divers frameworks de développement web. Mon expertise couvre l'ensemble du cycle de vie du développement logiciel, de la conception au déploiement, avec un fort accent sur la construction de systèmes efficaces, évolutifs et maintenables. Je m'épanouis en résolvant des problèmes complexes et je m'efforce constamment d'améliorer l'expérience utilisateur grâce à un code propre et optimisé. Quand je ne code pas, vous me trouverez en train d'explorer de nouvelles technologies ou de collaborer avec des équipes pour faire avancer des projets impactants.",
     },
     skills: {
       title: "<compétences/>",
@@ -60,7 +60,7 @@ export const texts = {
     },
     about: {
       title: "<about/>",
-      text: "Hi, I’m Abhishek Gupta, a passionate Full Stack Developer based in Montreal, CA. I hold a Master’s degree in Applied Computer Science from Concordia University and have experience working as a Full Stack Developer at",
+      text: "Hi, I’m Abhishek Gupta, a passionate Full Stack Developer based in Canada. I hold a Master’s degree in Applied Computer Science from Concordia University and have experience working as a Full Stack Developer at",
       empresa: " Tata Consultancy Services.",
       link: "https://www.tcs.com/",
       text2:
