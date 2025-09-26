@@ -13,6 +13,20 @@ export const projects = [
     featured: true,
   },
   {
+    "title": "Relationship Dashboard",
+    "subtitle": {
+      "fr": "Une application web full-stack qui fournit des informations et des analyses sur les discussions liées aux relations provenant de forums en ligne. Elle aide les utilisateurs à comprendre les tendances, les problèmes courants et les sentiments au sein de ces communautés.",
+      "en": "A full-stack web application that provides insights and analysis of relationship-related discussions from online forums. It helps users understand trends, common issues, and sentiment within these communities."
+    },
+    "technologies": ["n8n", "gemini", "Next.js", "React", "Node.js", "Express.js", "MongoDB", "TypeScript", 
+      "Tailwind CSS", "Radix UI", "Zustand", "Recharts", "TanStack Query"],
+    "path": "https://relationship-dashboard.onrender.com/",
+    "git": "",
+    "img": "relationship-dashboard",
+    "category": "fullstack",
+    "featured": true
+  },
+  {
     title: "Chat App",
     subtitle: {
       fr: "Plataforma de chat em tempo real construída com React (Vite), Express.js, Socket.IO e MongoDB. Suporta mensagens instantâneas, rastreamento de presença online e compartilhamento de mídia, com autenticação JWT e upload de avatares via Cloudinary.",
