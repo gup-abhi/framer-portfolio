@@ -203,7 +203,6 @@ function App() {
 
           <Footer />
           <BackToTop />
-          <AnalyticsDebugger />
         </div>
       ) : (
         <>
