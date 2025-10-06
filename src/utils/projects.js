@@ -46,7 +46,7 @@ export const projects = [
       en: "A comprehensive expense tracking application built with the PERN stack (PostgreSQL, Express.js, React.js, Node.js). Features user authentication, interactive dashboard, and detailed financial reports.",
     },
     technologies: ["React", "PostgreSQL", "Express.js", "Node.js", "JWT", "Chart.js"],
-    path: "http://expense-tracker.abhishek-gupta.tech/sign-up",
+    path: "http://expense-tracker.abhishek-gupta.tech/",
     git: "https://github.com/gup-abhi/expense-tracker-server",
     img: "expense",
     category: "fullstack",
