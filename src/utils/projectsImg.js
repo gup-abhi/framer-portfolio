@@ -8,6 +8,7 @@ export const projImg = {
   'ai-journal': aiJournaling,
   'chat-app': chatApp,
   'expense': expenseTracker,
+  'expense-wallet': expenseTracker, // placeholder until screenshot is added
   'top-movies': topMovies,
-  'relationship-dashboard': relationshipDashboard
-}
+  'relationship-dashboard': relationshipDashboard,
+};

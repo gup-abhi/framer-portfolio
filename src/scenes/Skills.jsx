@@ -1,270 +1,171 @@
-import { motion } from "framer-motion";
-import LineGradient from "../components/LineGradient";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
 import { texts } from "../utils/texts";
-import { technologies } from "../utils/tech";
+import { techCategories } from "../utils/tech";
 
-const Skills = ({language}) => {
+const ALL_TABS = ["All", ...Object.keys(techCategories)];
+const ALL_TECHS = Object.values(techCategories).flat();
+
+const TechChip = ({ tech, index }) => (
+  <motion.div
+    layout
+    key={tech}
+    initial={{ opacity: 0, scale: 0.75, y: 20 }}
+    animate={{ opacity: 1, scale: 1, y: 0 }}
+    exit={{ opacity: 0, scale: 0.75, y: -10 }}
+    transition={{ duration: 0.25, delay: index * 0.025, type: "spring", stiffness: 200 }}
+    whileHover={{ y: -4, scale: 1.06 }}
+    className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm font-medium text-gray-300 cursor-default hover:bg-white/10 hover:border-purple/40 hover:text-white transition-colors duration-200 backdrop-blur-sm"
+  >
+    {tech}
+  </motion.div>
+);
+
+const Skills = ({ language }) => {
+  const [activeTab, setActiveTab] = useState("All");
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-4%", "4%"]);
+  const t = texts[language].skills;
+  const displayedTechs = activeTab === "All" ? ALL_TECHS : techCategories[activeTab];
+
   return (
-    <section id="skills" className="py-20 min-h-screen">
-      {/* Header Section */}
-      <motion.div
-        initial="visible"
-        animate="visible"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.5 }}
-        variants={{
-          hidden: { opacity: 0, y: -50 },
-          visible: { opacity: 1, y: 0 },
-        }}
-        className="text-center mb-16"
-      >
-        <h2 className="font-poppins font-bold text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-purple via-pink-two to-blue bg-clip-text text-transparent mb-6">
-          {texts[language].skills.title}
-        </h2>
-        <div className="flex justify-center mb-8">
-          <LineGradient width="w-1/3" />
-        </div>
-        <p className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-          {texts[language].skills.text}
-        </p>
+    <section ref={sectionRef} id="skills" className="relative py-32 overflow-hidden">
+      <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none z-0">
+        <div
+          className="absolute top-1/3 right-0 w-80 h-80 rounded-full blur-3xl opacity-10"
+          style={{ background: "radial-gradient(circle, #9067c6, transparent)" }}
+        />
+        <div
+          className="absolute bottom-1/3 left-0 w-72 h-72 rounded-full blur-3xl opacity-10"
+          style={{ background: "radial-gradient(circle, #5961df, transparent)" }}
+        />
       </motion.div>
 
-      {/* Main Content Grid */}
-      <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20">
-        {/* Left Column - Technologies */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={{
-            hidden: { opacity: 0, x: -50 },
-            visible: { 
-              opacity: 1, 
-              x: 0,
-              transition: {
-                duration: 0.6,
-                ease: "easeOut",
-                staggerChildren: 0.08,
-                delayChildren: 0.3
-              }
-            },
-          }}
-          className="space-y-8"
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.7 }}
         >
-          <motion.h3 
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 }
+          <h2
+            className="font-poppins font-bold text-5xl sm:text-6xl lg:text-7xl"
+            style={{
+              background: "linear-gradient(135deg, #9067c6, #f574b9, #5961df)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
             }}
-            className="font-poppins font-semibold text-3xl md:text-4xl text-white mb-6"
           >
-            Technologies & Tools
-          </motion.h3>
-          
+            {t.title}
+          </h2>
           <motion.div
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  staggerChildren: 0.05,
-                  delayChildren: 0.4
-                }
-              }
-            }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4"
-          >
-            {technologies.map((tech, index) => (
-              <motion.div
-                key={index}
-                variants={{
-                  hidden: { 
-                    opacity: 0, 
-                    scale: 0.3, 
-                    y: 20,
-                    rotateX: -90
-                  },
-                  visible: { 
-                    opacity: 1, 
-                    scale: 1,
-                    y: 0,
-                    rotateX: 0,
-                    transition: {
-                      type: "spring",
-                      stiffness: 260,
-                      damping: 20
-                    }
-                  }
-                }}
-                whileHover={{ 
-                  scale: 1.08,
-                  y: -5,
-                  rotateX: 5,
-                  boxShadow: "0 20px 40px rgba(144, 103, 198, 0.3)",
-                  transition: { 
-                    duration: 0.3,
-                    ease: "easeOut"
-                  }
-                }}
-                whileTap={{ 
-                  scale: 0.95,
-                  transition: { duration: 0.1 }
-                }}
-                animate={{
-                  y: [0, -3, 0],
-                }}
-                transition={{
-                  duration: 3 + index * 0.1,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: index * 0.05
-                }}
-                className="bg-gradient-to-br from-purple/20 via-purple/15 to-pink-two/20 border border-purple/30 rounded-xl px-4 py-3 text-center text-sm font-medium hover:border-purple/60 hover:from-purple/40 hover:via-purple/25 hover:to-pink-two/40 transition-all duration-300 cursor-default relative overflow-hidden group"
-              >
-                {/* Animated background glow */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-purple/0 via-purple/20 to-pink-two/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "100%" }}
-                  transition={{ duration: 0.6 }}
-                />
-                
-                {/* Tech name with subtle glow effect */}
-                <span className="relative z-10 text-white group-hover:text-purple-200 transition-colors duration-300">
-                  {tech}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
+            className="mx-auto mt-4 h-1 rounded-full"
+            style={{ background: "linear-gradient(90deg, #9067c6, #f574b9, #5961df)" }}
+            initial={{ width: 0 }}
+            whileInView={{ width: 120 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          />
+          <p className="mt-6 text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">{t.text}</p>
         </motion.div>
 
-        {/* Right Column - Skill Categories */}
+        {/* Category tabs */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={{
-            hidden: { opacity: 0, x: 50 },
-            visible: { 
-              opacity: 1, 
-              x: 0,
-              transition: {
-                duration: 0.6,
-                ease: "easeOut",
-                staggerChildren: 0.15,
-                delayChildren: 0.4
-              }
-            },
-          }}
-          className="space-y-8"
+          className="flex flex-wrap justify-center gap-2 mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <motion.h3 
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 }
-            }}
-            className="font-poppins font-semibold text-3xl md:text-4xl text-white mb-6"
-          >
-            Core Competencies
-          </motion.h3>
-          
-          {[1, 2, 3].map((skillIndex, index) => (
+          {ALL_TABS.map((tab) => {
+            const isActive = activeTab === tab;
+            return (
+              <motion.button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                className={`relative px-5 py-2 rounded-full text-sm font-semibold border transition-colors duration-200 ${
+                  isActive
+                    ? "text-white border-transparent"
+                    : "text-gray-400 border-white/10 bg-white/5 hover:border-purple/30 hover:text-white"
+                }`}
+                style={
+                  isActive
+                    ? { background: "linear-gradient(135deg, #9067c6, #f574b9)" }
+                    : {}
+                }
+              >
+                {tab}
+                {isActive && (
+                  <span className="ml-2 text-xs bg-white/20 rounded-full px-1.5 py-0.5">
+                    {displayedTechs.length}
+                  </span>
+                )}
+              </motion.button>
+            );
+          })}
+        </motion.div>
+
+        {/* Tech chips */}
+        <div className="min-h-[140px] mb-20">
+          <AnimatePresence mode="wait">
             <motion.div
-              key={skillIndex}
-              variants={{
-                hidden: { 
-                  opacity: 0, 
-                  y: 40,
-                  x: 20,
-                  scale: 0.9
-                },
-                visible: { 
-                  opacity: 1, 
-                  y: 0,
-                  x: 0,
-                  scale: 1,
-                  transition: {
-                    type: "spring",
-                    stiffness: 200,
-                    damping: 25
-                  }
-                }
-              }}
-              whileHover={{ 
-                scale: 1.03,
-                y: -5,
-                boxShadow: "0 25px 50px rgba(144, 103, 198, 0.2)",
-                borderColor: "rgba(144, 103, 198, 0.4)",
-                transition: { 
-                  duration: 0.3,
-                  ease: "easeOut"
-                }
-              }}
-              whileTap={{ 
-                scale: 0.98,
-                transition: { duration: 0.1 }
-              }}
-              className="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple/40 transition-all duration-300 relative overflow-hidden group"
+              key={activeTab}
+              className="flex flex-wrap gap-3 justify-center"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
             >
-              {/* Animated background overlay */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-purple/5 via-transparent to-pink-two/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.6 }}
-                style={{ originX: 0 }}
-              />
-              
-              <div className="flex items-start gap-4 relative z-10">
-                <div className="flex-shrink-0">
-                  <motion.div 
-                    className="w-16 h-16 bg-gradient-to-r from-purple to-pink-two rounded-xl flex items-center justify-center"
-                    whileHover={{ 
-                      rotate: 360,
-                      transition: { duration: 0.6 }
-                    }}
-                  >
-                    <motion.span 
-                      className="font-source-code font-bold text-2xl text-white"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ 
-                        delay: 0.5 + index * 0.2,
-                        type: "spring",
-                        stiffness: 300
-                      }}
-                    >
-                      {skillIndex.toString().padStart(2, '0')}
-                    </motion.span>
-                  </motion.div>
-                </div>
-                <div className="flex-1">
-                  <motion.h4 
-                    className="font-source-code font-bold text-xl md:text-2xl text-white mb-3"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ 
-                      delay: 0.6 + index * 0.2,
-                      duration: 0.5
-                    }}
-                  >
-                    {texts[language].skills[skillIndex].title}
-                  </motion.h4>
-                  <motion.p 
-                    className="text-gray-300 leading-relaxed"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ 
-                      delay: 0.7 + index * 0.2,
-                      duration: 0.5
-                    }}
-                  >
-                    {texts[language].skills[skillIndex].text}
-                  </motion.p>
-                </div>
-              </div>
+              {displayedTechs.map((tech, i) => (
+                <TechChip key={tech} tech={tech} index={i} />
+              ))}
             </motion.div>
-          ))}
+          </AnimatePresence>
+        </div>
+
+        {/* Core competencies */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7 }}
+        >
+          <h3 className="text-center text-2xl font-poppins font-bold text-white mb-10">
+            Core Competencies
+          </h3>
+          <div className="grid sm:grid-cols-3 gap-6">
+            {[1, 2, 3].map((num, i) => (
+              <motion.div
+                key={num}
+                className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center backdrop-blur-sm hover:border-purple/30 transition-colors duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15, duration: 0.5, type: "spring" }}
+                whileHover={{ y: -6, scale: 1.02 }}
+              >
+                <div
+                  className="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center text-2xl"
+                  style={{ background: "linear-gradient(135deg, rgba(144,103,198,0.3), rgba(245,116,185,0.3))" }}
+                >
+                  {num === 1 ? "🚀" : num === 2 ? "💬" : "🌐"}
+                </div>
+                <h4 className="font-poppins font-bold text-white text-lg mb-3 capitalize">
+                  {t[num].title}
+                </h4>
+                <p className="text-gray-400 text-sm leading-relaxed">{t[num].text}</p>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

@@ -1,206 +1,208 @@
-import useMediaQuery from "../hooks/useMediaQuery";
 import { motion, useScroll, useTransform } from "framer-motion";
-import LineGradient from "../components/LineGradient";
-import { texts } from "./../utils/texts";
+import { useRef } from "react";
+import { texts } from "../utils/texts";
 import ProfileImage from "../assets/profile2.png";
 import { handleEventAnalytics } from "../hooks/useGoogleAnalytics";
-import { useRef } from "react";
 
-const aboutVariant = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, staggerChildren: 0.2, ease: "easeOut" },
-  },
-};
+const STATS = (language) => [
+  { value: "4+", label: texts[language].about.stats.years, color: "from-purple to-purple/60" },
+  { value: "5+", label: texts[language].about.stats.clients, color: "from-pink to-pink/60" },
+  { value: "80%", label: texts[language].about.stats.crash, color: "from-blue to-blue/60" },
+  { value: "70%", label: texts[language].about.stats.automation, color: "from-light-purple to-light-purple/60" },
+];
 
-const floatingVariant = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
+const ExperienceCard = ({ exp, isActive }) => (
+  <motion.div
+    initial={{ opacity: 0, x: 40 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true, amount: 0.4 }}
+    transition={{ duration: 0.6, type: "spring", stiffness: 80 }}
+    className={`relative p-6 rounded-2xl border backdrop-blur-sm transition-all duration-300 ${
+      isActive
+        ? "bg-gradient-to-br from-purple/20 to-pink/10 border-purple/40"
+        : "bg-white/5 border-white/10"
+    }`}
+  >
+    {isActive && (
+      <span className="absolute top-4 right-4 flex items-center gap-1.5 text-xs text-green-400 font-medium">
+        <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+        Current
+      </span>
+    )}
+    <h4 className="font-poppins font-bold text-white text-lg mb-0.5">{exp.title}</h4>
+    <p className="text-purple font-medium text-sm mb-1">{exp.company}</p>
+    <p className="text-gray-500 text-xs mb-4">{exp.period}</p>
+    <ul className="space-y-2">
+      {exp.highlights.map((h, i) => (
+        <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
+          <span className="w-1 h-1 bg-purple rounded-full mt-2 flex-shrink-0" />
+          {h}
+        </li>
+      ))}
+    </ul>
+  </motion.div>
+);
 
 const AboutMe = ({ language }) => {
-  const mediumScreens = useMediaQuery("(min-width: 1060px)");
-  const ref = useRef(null);
+  const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end end"],
+    target: sectionRef,
+    offset: ["start end", "end start"],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.3], [0.95, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [0.8, 1]);
-  const y = useTransform(scrollYProgress, [0, 0.3], [50, 0]);
+  const bgY    = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+
+  const t = texts[language].about;
+  const stats = STATS(language);
 
   return (
-    <section className="relative py-24 overflow-hidden" id="about">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-purple/20 to-pink-two/20 rounded-full blur-xl"
-          animate={{
-            y: [0, -20, 0],
-            x: [0, 10, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+    <section ref={sectionRef} id="about" className="relative py-32 overflow-hidden">
+      {/* Parallax background orbs */}
+      <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none z-0">
+        <div
+          className="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-10"
+          style={{ background: "radial-gradient(circle, #9067c6, transparent)" }}
         />
-        <motion.div
-          className="absolute bottom-20 right-10 w-24 h-24 bg-gradient-to-br from-blue/20 to-purple/20 rounded-full blur-xl"
-          animate={{
-            y: [0, 20, 0],
-            x: [0, -10, 0],
-            scale: [1, 0.9, 1],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
+        <div
+          className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-10"
+          style={{ background: "radial-gradient(circle, #f574b9, transparent)" }}
         />
-      </div>
+      </motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Content Section */}
+        {/* Section header */}
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.7 }}
+        >
+          <h2
+            className="font-poppins font-bold text-5xl sm:text-6xl lg:text-7xl"
+            style={{
+              background: "linear-gradient(135deg, #9067c6, #f574b9, #5961df)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            {t.title}
+          </h2>
           <motion.div
-            initial="hidden"
-            whileInView="visible"
+            className="mx-auto mt-4 h-1 rounded-full"
+            style={{ background: "linear-gradient(90deg, #9067c6, #f574b9, #5961df)" }}
+            initial={{ width: 0 }}
+            whileInView={{ width: 120 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          />
+        </motion.div>
+
+        {/* Main grid */}
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          {/* Left: Bio + Stats */}
+          <motion.div
+            className="space-y-10"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            variants={aboutVariant}
-            className="order-1 lg:order-1 space-y-8"
+            transition={{ duration: 0.8, type: "spring", stiffness: 70 }}
           >
-            {/* Modern glassmorphism content card */}
-            <div className="glass-card rounded-3xl p-8 lg:p-10 backdrop-blur-xl border border-white/10 shadow-2xl">
-              {/* Title with gradient text */}
-              <motion.h2 
-                variants={floatingVariant}
-                className="font-poppins font-bold text-5xl lg:text-6xl mb-6 text-gradient-animated"
-              >
-                {texts[language].about.title}
-              </motion.h2>
-              
-              {/* Modern gradient line */}
-              <motion.div 
-                variants={floatingVariant}
-                className="relative mb-8"
-              >
-                <div className="h-1 bg-gradient-to-r from-purple via-pink-two to-blue rounded-full w-24"></div>
-                <div className="absolute top-0 left-0 h-1 bg-gradient-to-r from-purple via-pink-two to-blue rounded-full w-24 animate-pulse"></div>
-              </motion.div>
-
-              {/* Content with modern typography */}
-              <motion.div 
-                variants={floatingVariant}
-                className="space-y-6"
-              >
-                <p className="text-lg lg:text-xl leading-relaxed text-gray-300 font-light">
-                  {texts[language].about.text}
-                  <motion.a
-                    className="text-gradient-animated font-semibold hover:scale-105 transition-transform duration-300 inline-block mx-1"
-                    href={texts[language].about.link}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    onClick={() =>
-                      handleEventAnalytics(
-                        "Company Link",
-                        `Clicked Tata Consultancy Services Link`
-                      )
-                    }
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {texts[language].about.empresa}
-                  </motion.a>
-                  {texts[language].about.text2}
-                </p>
-              </motion.div>
-
-              {/* Modern floating action indicators */}
-              <motion.div 
-                variants={floatingVariant}
-                className="flex items-center space-x-4 mt-8"
-              >
-                <motion.div
-                  className="flex items-center space-x-2 text-sm text-gray-400"
-                  animate={{
-                    x: [0, 5, 0],
+            {/* Bio card */}
+            <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm">
+              <p className="text-gray-300 text-lg leading-relaxed">
+                {t.text}
+                <motion.a
+                  href={t.link}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="font-semibold mx-1 inline-block"
+                  style={{
+                    background: "linear-gradient(135deg, #9067c6, #f574b9)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
                   }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
+                  whileHover={{ scale: 1.05 }}
+                  onClick={() => handleEventAnalytics("Company Link", "Clicked TCS Link")}
                 >
-                  <div className="w-2 h-2 bg-gradient-to-r from-purple to-pink-two rounded-full"></div>
-                  <span>Available for opportunities</span>
-                </motion.div>
-              </motion.div>
-            </div>
-          </motion.div>
+                  {t.empresa}
+                </motion.a>
+                {t.text2}
+              </p>
 
-          {/* Image Section */}
-          <motion.div
-            ref={ref}
-            style={{ scale: scale, opacity: opacity, y: y }}
-            initial={{ scale: 0.95, opacity: 0.8, y: 50 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="order-2 lg:order-2 flex justify-center lg:justify-end"
-          >
-            <div className="relative group">
-              {/* Modern glassmorphism container */}
-              <div className="relative p-8 glass-card rounded-3xl backdrop-blur-xl border border-white/10 shadow-2xl">
-                {/* Floating decorative elements */}
-                <motion.div
-                  className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-purple to-pink-two rounded-full opacity-60"
-                  animate={{
-                    y: [0, -10, 0],
-                    rotate: [0, 180, 360],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-                <motion.div
-                  className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-br from-blue to-purple rounded-full opacity-60"
-                  animate={{
-                    y: [0, 10, 0],
-                    rotate: [0, -180, -360],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1,
-                  }}
-                />
-                
-                {/* Profile image with modern styling */}
-                <div className="relative overflow-hidden rounded-2xl">
-                  <img
-                    alt="Abhishek Gupta - About Me"
-                    className="w-full max-w-sm mx-auto rounded-2xl shadow-2xl transform transition-transform duration-500 group-hover:scale-105"
-                    src={ProfileImage}
-                    loading="lazy"
-                  />
-                  {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-purple/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-                </div>
+              {/* Available indicator */}
+              <div className="flex items-center gap-2 mt-6 pt-6 border-t border-white/10">
+                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <span className="text-gray-400 text-sm">Available for full-time opportunities</span>
               </div>
             </div>
+
+            {/* Stats grid */}
+            <div className="grid grid-cols-2 gap-4">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={i}
+                  className="bg-white/5 border border-white/10 rounded-2xl p-5 text-center backdrop-blur-sm group hover:border-purple/30 transition-all duration-300"
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.5, type: "spring" }}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                >
+                  <p
+                    className={`font-poppins font-bold text-3xl bg-gradient-to-br ${stat.color} bg-clip-text text-transparent mb-1`}
+                  >
+                    {stat.value}
+                  </p>
+                  <p className="text-gray-400 text-xs">{stat.label}</p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
+
+          {/* Right: Profile image + Experience */}
+          <div className="space-y-8">
+            {/* Profile image with parallax */}
+            <motion.div
+              style={{ y: imageY }}
+              className="flex justify-center"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, type: "spring" }}
+            >
+              <div className="relative group">
+                <div
+                  className="absolute -inset-1 rounded-3xl blur-sm opacity-50 group-hover:opacity-80 transition-opacity duration-500"
+                  style={{ background: "linear-gradient(135deg, #9067c6, #f574b9, #5961df)" }}
+                />
+                <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-3xl overflow-hidden">
+                  <img
+                    src={ProfileImage}
+                    alt="Abhishek Gupta"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: "linear-gradient(to top, rgba(144,103,198,0.3), transparent)" }}
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Experience timeline */}
+            <div className="relative space-y-4">
+              {/* Timeline line */}
+              <div className="absolute left-0 top-0 bottom-0 w-px ml-3 bg-gradient-to-b from-purple via-pink to-blue opacity-30" />
+              <div className="pl-8 space-y-4">
+                <ExperienceCard exp={t.experience.freelance} isActive={true} />
+                <ExperienceCard exp={t.experience.tcs} isActive={false} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
