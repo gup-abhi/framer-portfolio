@@ -16,6 +16,7 @@ const Footer = () => (
             background: "linear-gradient(135deg, #E8A020, #FF5E3A)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
+            color: "transparent",
             backgroundClip: "text",
           }}
         >

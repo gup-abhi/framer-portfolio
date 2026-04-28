@@ -132,6 +132,7 @@ const Contact = ({ language }) => {
               background: "linear-gradient(135deg, #E8A020, #FF5E3A, #2BBFB4)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
+              color: "transparent",
               backgroundClip: "text",
             }}
           >

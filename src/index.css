@@ -60,8 +60,6 @@ body,
 html.light .app { background-color: var(--bg); }
 
 html.light .text-white       { color: var(--text) !important; }
-html.light h1, html.light h2,
-html.light h3, html.light h4 { color: var(--text) !important; }
 html.light .text-gray-200    { color: #2A1800 !important; }
 html.light .text-gray-300    { color: #4A3020 !important; }
 html.light .text-gray-400    { color: var(--text-muted) !important; }

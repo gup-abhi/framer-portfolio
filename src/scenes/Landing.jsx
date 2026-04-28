@@ -141,6 +141,7 @@ const Landing = ({ setSelectedPage, language }) => {
                   background: "linear-gradient(135deg, #E8A020 0%, #FF5E3A 50%, #2BBFB4 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
+                  color: "transparent",
                   backgroundClip: "text",
                 }}
               >
