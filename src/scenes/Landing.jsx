@@ -22,10 +22,11 @@ const Landing = ({ setSelectedPage, language }) => {
   const isDesktop = useMediaQuery("(min-width: 1060px)");
   const { scrollY } = useScroll();
 
-  const bgY = useTransform(scrollY, [0, 700], [0, -60]);
-  const orbY = useTransform(scrollY, [0, 700], [0, -120]);
-  const textY = useTransform(scrollY, [0, 700], [0, -180]);
+  const bgY    = useTransform(scrollY, [0, 700], [0, -60]);
+  const orbY   = useTransform(scrollY, [0, 700], [0, -120]);
+  const textY  = useTransform(scrollY, [0, 700], [0, -180]);
   const imageY = useTransform(scrollY, [0, 700], [0, -100]);
+  const badgeY = useTransform(scrollY, [0, 700], [0, 80]);
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0.2]);
   const scrollIndicatorOpacity = useTransform(scrollY, [0, 200], [1, 0]);
 
@@ -63,7 +64,7 @@ const Landing = ({ setSelectedPage, language }) => {
           className="absolute inset-0 opacity-5"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(144,103,198,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(144,103,198,0.4) 1px, transparent 1px)",
+              "linear-gradient(rgba(232,160,32,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(232,160,32,0.4) 1px, transparent 1px)",
             backgroundSize: "80px 80px",
           }}
         />
@@ -73,19 +74,19 @@ const Landing = ({ setSelectedPage, language }) => {
       <motion.div style={{ y: orbY }} className="absolute inset-0 pointer-events-none z-0">
         <motion.div
           className="absolute top-[10%] left-[5%] w-80 h-80 rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(144,103,198,0.3) 0%, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, rgba(232,160,32,0.3) 0%, transparent 70%)" }}
           animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
           className="absolute bottom-[15%] right-[5%] w-96 h-96 rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(245,116,185,0.2) 0%, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, rgba(255,94,58,0.2) 0%, transparent 70%)" }}
           animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
         <motion.div
           className="absolute top-[40%] right-[20%] w-64 h-64 rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(89,97,223,0.2) 0%, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, rgba(43,191,180,0.2) 0%, transparent 70%)" }}
           animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         />
@@ -115,7 +116,7 @@ const Landing = ({ setSelectedPage, language }) => {
             <motion.div
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8 backdrop-blur-sm"
-              style={{ background: "rgba(144,103,198,0.15)", border: "1px solid rgba(144,103,198,0.35)" }}
+              style={{ background: "rgba(232,160,32,0.15)", border: "1px solid rgba(232,160,32,0.35)" }}
             >
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
               <span className="text-sm text-gray-300 font-medium">
@@ -137,7 +138,7 @@ const Landing = ({ setSelectedPage, language }) => {
               <span
                 className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl"
                 style={{
-                  background: "linear-gradient(135deg, #9067c6 0%, #f574b9 50%, #5961df 100%)",
+                  background: "linear-gradient(135deg, #E8A020 0%, #FF5E3A 50%, #2BBFB4 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -181,12 +182,12 @@ const Landing = ({ setSelectedPage, language }) => {
                     handleEventAnalytics("Hero CTA", "Clicked Contact Me");
                   }}
                   className="relative px-8 py-4 rounded-full font-semibold text-white overflow-hidden group"
-                  style={{ background: "linear-gradient(135deg, #9067c6, #f574b9)" }}
+                  style={{ background: "linear-gradient(135deg, #E8A020, #FF5E3A)" }}
                 >
                   <span className="relative z-10">{texts[language].landing.contact}</span>
                   <motion.div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ background: "linear-gradient(135deg, #f574b9, #5961df)" }}
+                    style={{ background: "linear-gradient(135deg, #FF5E3A, #2BBFB4)" }}
                   />
                 </motion.button>
               </AnchorLink>
@@ -211,64 +212,72 @@ const Landing = ({ setSelectedPage, language }) => {
             </motion.div>
           </motion.div>
 
-          {/* Profile image */}
+          {/* Profile image column — outer wrapper has NO transform (keeps layout stable) */}
           <motion.div
-            style={{ y: imageY }}
-            className="flex-shrink-0 flex justify-center"
+            className="flex-1 flex justify-center"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.6, type: "spring", stiffness: 70 }}
           >
+            {/* Positioning context for both photo and badges */}
             <div className="relative">
-              {/* Rotating gradient ring */}
-              <motion.div
-                className="absolute -inset-3 rounded-full"
-                style={{
-                  background: "conic-gradient(from 0deg, #9067c6, #f574b9, #5961df, #9067c6)",
-                  filter: "blur(2px)",
-                }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-              />
-              {/* Glow */}
-              <div
-                className="absolute -inset-6 rounded-full blur-3xl opacity-40"
-                style={{ background: "radial-gradient(circle, #9067c6, #f574b9)" }}
-              />
-              {/* Photo */}
-              <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-white/10">
-                <img
-                  src={ProfileImage}
-                  alt="Abhishek Gupta"
-                  className="w-full h-full object-cover"
-                />
-              </div>
 
-              {/* Floating tech badges */}
-              <motion.div
-                className="absolute -top-4 -right-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-3 py-2 text-xs font-semibold text-white flex items-center gap-1.5"
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <span className="w-2 h-2 bg-purple rounded-full" />
-                React
+              {/* Photo group — moves UP with scroll via imageY */}
+              <motion.div style={{ y: imageY }}>
+                <div className="relative">
+                  <motion.div
+                    className="absolute -inset-3 rounded-full"
+                    style={{
+                      background: "conic-gradient(from 0deg, #E8A020, #FF5E3A, #2BBFB4, #E8A020)",
+                      filter: "blur(2px)",
+                    }}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                  />
+                  <div
+                    className="absolute -inset-6 rounded-full blur-3xl opacity-40"
+                    style={{ background: "radial-gradient(circle, #E8A020, #FF5E3A)" }}
+                  />
+                  <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-white/10">
+                    <img src={ProfileImage} alt="Abhishek Gupta" className="w-full h-full object-cover" />
+                  </div>
+                </div>
               </motion.div>
-              <motion.div
-                className="absolute -bottom-4 -left-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-3 py-2 text-xs font-semibold text-white flex items-center gap-1.5"
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              >
-                <span className="w-2 h-2 bg-pink rounded-full" />
-                Node.js
+
+              {/* Badges — siblings of photo, no imageY parent → badgeY applies cleanly */}
+              <motion.div style={{ y: badgeY }} className="absolute -top-4 -right-8">
+                <motion.div
+                  className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-3 py-2 text-xs font-semibold text-white flex items-center gap-1.5"
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <span className="w-2 h-2 bg-purple rounded-full" />
+                  React
+                </motion.div>
               </motion.div>
-              <motion.div
-                className="absolute top-1/2 -right-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-3 py-2 text-xs font-semibold text-white flex items-center gap-1.5"
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              >
-                <span className="w-2 h-2 bg-blue rounded-full" />
-                Python
+
+              <motion.div style={{ y: badgeY }} className="absolute -bottom-4 -left-8">
+                <motion.div
+                  className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-3 py-2 text-xs font-semibold text-white flex items-center gap-1.5"
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                >
+                  <span className="w-2 h-2 bg-pink rounded-full" />
+                  Node.js
+                </motion.div>
               </motion.div>
+
+              <motion.div style={{ y: badgeY }} className="absolute top-1/2 -right-12">
+                <motion.div
+                  className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-3 py-2 text-xs font-semibold text-white flex items-center gap-1.5"
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                >
+                  <span className="w-2 h-2 bg-blue rounded-full" />
+                  Python
+                </motion.div>
+              </motion.div>
+
             </div>
           </motion.div>
         </div>

@@ -62,11 +62,11 @@ const AboutMe = ({ language }) => {
       <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none z-0">
         <div
           className="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-10"
-          style={{ background: "radial-gradient(circle, #9067c6, transparent)" }}
+          style={{ background: "radial-gradient(circle, #E8A020, transparent)" }}
         />
         <div
           className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-10"
-          style={{ background: "radial-gradient(circle, #f574b9, transparent)" }}
+          style={{ background: "radial-gradient(circle, #FF5E3A, transparent)" }}
         />
       </motion.div>
 
@@ -82,7 +82,7 @@ const AboutMe = ({ language }) => {
           <h2
             className="font-poppins font-bold text-5xl sm:text-6xl lg:text-7xl"
             style={{
-              background: "linear-gradient(135deg, #9067c6, #f574b9, #5961df)",
+              background: "linear-gradient(135deg, #E8A020, #FF5E3A, #2BBFB4)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -92,7 +92,7 @@ const AboutMe = ({ language }) => {
           </h2>
           <motion.div
             className="mx-auto mt-4 h-1 rounded-full"
-            style={{ background: "linear-gradient(90deg, #9067c6, #f574b9, #5961df)" }}
+            style={{ background: "linear-gradient(90deg, #E8A020, #FF5E3A, #2BBFB4)" }}
             initial={{ width: 0 }}
             whileInView={{ width: 120 }}
             viewport={{ once: true }}
@@ -120,7 +120,7 @@ const AboutMe = ({ language }) => {
                   rel="noreferrer noopener"
                   className="font-semibold mx-1 inline-block"
                   style={{
-                    background: "linear-gradient(135deg, #9067c6, #f574b9)",
+                    background: "linear-gradient(135deg, #E8A020, #FF5E3A)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
@@ -177,7 +177,7 @@ const AboutMe = ({ language }) => {
               <div className="relative group">
                 <div
                   className="absolute -inset-1 rounded-3xl blur-sm opacity-50 group-hover:opacity-80 transition-opacity duration-500"
-                  style={{ background: "linear-gradient(135deg, #9067c6, #f574b9, #5961df)" }}
+                  style={{ background: "linear-gradient(135deg, #E8A020, #FF5E3A, #2BBFB4)" }}
                 />
                 <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-3xl overflow-hidden">
                   <img
@@ -187,7 +187,7 @@ const AboutMe = ({ language }) => {
                   />
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: "linear-gradient(to top, rgba(144,103,198,0.3), transparent)" }}
+                    style={{ background: "linear-gradient(to top, rgba(232,160,32,0.3), transparent)" }}
                   />
                 </div>
               </div>

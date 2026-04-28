@@ -4,13 +4,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "deep-purple": "#17072b",
-        purple: "#9067c6",
-        "light-purple": "#8d86c9",
-        pink: "#cac4ce",
-        "light-pink": "#f7ece1",
-        "pink-two": "rgba(245,116,185,1)",
-        blue: "rgba(89,97,223,1)"
+        "deep-purple": "#0A0906",
+        purple: "#E8A020",
+        "light-purple": "#D4940A",
+        pink: "#FF5E3A",
+        "light-pink": "#FFE8E0",
+        "pink-two": "#FF5E3A",
+        blue: "#2BBFB4",
+        cream: "#F5EDD8",
+        "retro-dark": "#1C1710",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

@@ -24,13 +24,25 @@ import { useErrorTracking, usePerformanceMonitoring, useNetworkMonitoring } from
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import InitialLoading from "./components/InitialLoading";
-import AnalyticsDebugger from "./components/AnalyticsDebugger";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState("home");
   const [topOfPage, setTopOfPage] = useState(true);
   const [language, setLanguage] = useState("en");
   const [isLoading, setIsLoading] = useState(true);
+  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
+
+  useEffect(() => {
+    const html = document.documentElement;
+    if (theme === "light") {
+      html.classList.add("light");
+    } else {
+      html.classList.remove("light");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
   const mediumScreens = useMediaQuery("(min-width: 1060px)");
   
   // Refs for tracking
@@ -125,6 +137,8 @@ function App() {
             topOfPage={topOfPage}
             language={language}
             setLanguage={setLanguage}
+            theme={theme}
+            toggleTheme={toggleTheme}
           />
 
           <div className="w-5/6 mx-auto">

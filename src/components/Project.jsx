@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import useMediaQuery from "./../hooks/useMediaQuery";
 import { FaGithub, FaEye, FaExternalLinkAlt, FaStar, FaCode } from "react-icons/fa";
 import { 
   handleEventAnalytics, 
@@ -10,7 +9,6 @@ import {
 import { projImg } from '../utils/projectsImg'
 
 const Project = ({ project, language, index }) => {
-  const desktop = useMediaQuery("(min-width: 768px)");
 
   if (!project) {
     return null;

@@ -37,11 +37,11 @@ const Skills = ({ language }) => {
       <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none z-0">
         <div
           className="absolute top-1/3 right-0 w-80 h-80 rounded-full blur-3xl opacity-10"
-          style={{ background: "radial-gradient(circle, #9067c6, transparent)" }}
+          style={{ background: "radial-gradient(circle, #E8A020, transparent)" }}
         />
         <div
           className="absolute bottom-1/3 left-0 w-72 h-72 rounded-full blur-3xl opacity-10"
-          style={{ background: "radial-gradient(circle, #5961df, transparent)" }}
+          style={{ background: "radial-gradient(circle, #2BBFB4, transparent)" }}
         />
       </motion.div>
 
@@ -57,7 +57,7 @@ const Skills = ({ language }) => {
           <h2
             className="font-poppins font-bold text-5xl sm:text-6xl lg:text-7xl"
             style={{
-              background: "linear-gradient(135deg, #9067c6, #f574b9, #5961df)",
+              background: "linear-gradient(135deg, #E8A020, #FF5E3A, #2BBFB4)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -67,7 +67,7 @@ const Skills = ({ language }) => {
           </h2>
           <motion.div
             className="mx-auto mt-4 h-1 rounded-full"
-            style={{ background: "linear-gradient(90deg, #9067c6, #f574b9, #5961df)" }}
+            style={{ background: "linear-gradient(90deg, #E8A020, #FF5E3A, #2BBFB4)" }}
             initial={{ width: 0 }}
             whileInView={{ width: 120 }}
             viewport={{ once: true }}
@@ -99,7 +99,7 @@ const Skills = ({ language }) => {
                 }`}
                 style={
                   isActive
-                    ? { background: "linear-gradient(135deg, #9067c6, #f574b9)" }
+                    ? { background: "linear-gradient(135deg, #E8A020, #FF5E3A)" }
                     : {}
                 }
               >
@@ -155,7 +155,7 @@ const Skills = ({ language }) => {
               >
                 <div
                   className="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center text-2xl"
-                  style={{ background: "linear-gradient(135deg, rgba(144,103,198,0.3), rgba(245,116,185,0.3))" }}
+                  style={{ background: "linear-gradient(135deg, rgba(232,160,32,0.3), rgba(255,94,58,0.3))" }}
                 >
                   {num === 1 ? "🚀" : num === 2 ? "💬" : "🌐"}
                 </div>

@@ -3,6 +3,7 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { AiOutlineCloseCircle, AiOutlineMenu } from "react-icons/ai";
 import { FaGlobe } from "react-icons/fa";
+import { FiSun, FiMoon } from "react-icons/fi";
 import { 
   handleEventAnalytics, 
   trackUserInteraction, 
@@ -42,7 +43,7 @@ const translations = {
   },
 };
 
-const Navbar = ({ selectedPage, setSelectedPage, language, setLanguage }) => {
+const Navbar = ({ selectedPage, setSelectedPage, language, setLanguage, theme, toggleTheme }) => {
   const [menuToggled, setMenuToggled] = useState(false);
   const [hasShadow, setHasShadow] = useState(false);
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
@@ -188,6 +189,27 @@ const Navbar = ({ selectedPage, setSelectedPage, language, setLanguage }) => {
               </motion.span>
             ))}
             
+            {/* Theme Toggle */}
+            <motion.button
+              initial={{ y: -100 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.25, delay: 0.55, type: "spring", stiffness: 150, damping: 15 }}
+              onClick={toggleTheme}
+              whileHover={{ scale: 1.1, rotate: 15 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2.5 rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 transition-all duration-200 text-white"
+              aria-label="Toggle theme"
+            >
+              <motion.div
+                key={theme}
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                transition={{ duration: 0.25 }}
+              >
+                {theme === "dark" ? <FiSun size={18} /> : <FiMoon size={18} />}
+              </motion.div>
+            </motion.button>
+
             {/* Language Switcher */}
             <div className="relative language-menu">
               <motion.button
@@ -238,7 +260,20 @@ const Navbar = ({ selectedPage, setSelectedPage, language, setLanguage }) => {
             </div>
           </div>
         ) : (
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            {/* Theme Toggle Mobile */}
+            <motion.button
+              onClick={toggleTheme}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-lg border border-white/20 bg-white/5 text-white"
+              aria-label="Toggle theme"
+            >
+              <motion.div key={theme} initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} transition={{ duration: 0.25 }}>
+                {theme === "dark" ? <FiSun size={16} /> : <FiMoon size={16} />}
+              </motion.div>
+            </motion.button>
+
             {/* Language Switcher for Mobile */}
             <div className="relative language-menu">
               <button

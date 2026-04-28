@@ -5,7 +5,7 @@ const Footer = () => (
   <footer className="relative py-10 border-t border-white/10 overflow-hidden">
     <div
       className="absolute inset-0 pointer-events-none"
-      style={{ background: "linear-gradient(to top, rgba(144,103,198,0.05), transparent)" }}
+      style={{ background: "linear-gradient(to top, rgba(232,160,32,0.05), transparent)" }}
     />
     <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p className="text-gray-500 text-sm">
@@ -13,7 +13,7 @@ const Footer = () => (
         <span
           className="font-semibold"
           style={{
-            background: "linear-gradient(135deg, #9067c6, #f574b9)",
+            background: "linear-gradient(135deg, #E8A020, #FF5E3A)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",

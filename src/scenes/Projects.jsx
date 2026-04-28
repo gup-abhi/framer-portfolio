@@ -21,11 +21,11 @@ const Projects = ({ language }) => {
       <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none z-0">
         <div
           className="absolute top-1/4 left-0 w-96 h-96 rounded-full blur-3xl opacity-8"
-          style={{ background: "radial-gradient(circle, #f574b9, transparent)" }}
+          style={{ background: "radial-gradient(circle, #FF5E3A, transparent)" }}
         />
         <div
           className="absolute bottom-1/4 right-0 w-80 h-80 rounded-full blur-3xl opacity-8"
-          style={{ background: "radial-gradient(circle, #9067c6, transparent)" }}
+          style={{ background: "radial-gradient(circle, #E8A020, transparent)" }}
         />
       </motion.div>
 
@@ -41,7 +41,7 @@ const Projects = ({ language }) => {
           <h2
             className="font-poppins font-bold text-5xl sm:text-6xl lg:text-7xl"
             style={{
-              background: "linear-gradient(135deg, #9067c6, #f574b9, #5961df)",
+              background: "linear-gradient(135deg, #E8A020, #FF5E3A, #2BBFB4)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -51,7 +51,7 @@ const Projects = ({ language }) => {
           </h2>
           <motion.div
             className="mx-auto mt-4 h-1 rounded-full"
-            style={{ background: "linear-gradient(90deg, #9067c6, #f574b9, #5961df)" }}
+            style={{ background: "linear-gradient(90deg, #E8A020, #FF5E3A, #2BBFB4)" }}
             initial={{ width: 0 }}
             whileInView={{ width: 120 }}
             viewport={{ once: true }}
@@ -120,7 +120,7 @@ const Projects = ({ language }) => {
             whileHover={{ scale: 1.05, y: -3 }}
             whileTap={{ scale: 0.97 }}
             className="inline-flex items-center gap-3 text-white px-8 py-4 rounded-full font-semibold text-base shadow-lg transition-all duration-300"
-            style={{ background: "linear-gradient(135deg, #9067c6, #f574b9)" }}
+            style={{ background: "linear-gradient(135deg, #E8A020, #FF5E3A)" }}
           >
             <FaGithub size={20} />
             {language === "en" ? "View More on GitHub" : "Voir Plus sur GitHub"}

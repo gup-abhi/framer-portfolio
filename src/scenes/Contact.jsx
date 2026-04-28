@@ -109,11 +109,11 @@ const Contact = ({ language }) => {
       <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none z-0">
         <div
           className="absolute top-0 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-10"
-          style={{ background: "radial-gradient(circle, #9067c6, transparent)" }}
+          style={{ background: "radial-gradient(circle, #E8A020, transparent)" }}
         />
         <div
           className="absolute bottom-0 left-1/4 w-72 h-72 rounded-full blur-3xl opacity-10"
-          style={{ background: "radial-gradient(circle, #f574b9, transparent)" }}
+          style={{ background: "radial-gradient(circle, #FF5E3A, transparent)" }}
         />
       </motion.div>
 
@@ -129,7 +129,7 @@ const Contact = ({ language }) => {
           <h2
             className="font-poppins font-bold text-5xl sm:text-6xl lg:text-7xl"
             style={{
-              background: "linear-gradient(135deg, #9067c6, #f574b9, #5961df)",
+              background: "linear-gradient(135deg, #E8A020, #FF5E3A, #2BBFB4)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -139,7 +139,7 @@ const Contact = ({ language }) => {
           </h2>
           <motion.div
             className="mx-auto mt-4 h-1 rounded-full"
-            style={{ background: "linear-gradient(90deg, #9067c6, #f574b9, #5961df)" }}
+            style={{ background: "linear-gradient(90deg, #E8A020, #FF5E3A, #2BBFB4)" }}
             initial={{ width: 0 }}
             whileInView={{ width: 120 }}
             viewport={{ once: true }}
@@ -170,7 +170,7 @@ const Contact = ({ language }) => {
               >
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 text-white"
-                  style={{ background: "linear-gradient(135deg, rgba(144,103,198,0.4), rgba(245,116,185,0.4))" }}
+                  style={{ background: "linear-gradient(135deg, rgba(232,160,32,0.4), rgba(255,94,58,0.4))" }}
                 >
                   {card.icon}
                 </div>
@@ -203,7 +203,7 @@ const Contact = ({ language }) => {
               <div className="relative group w-48 sm:w-56">
                 <div
                   className="absolute -inset-1 rounded-2xl blur-sm opacity-40"
-                  style={{ background: "linear-gradient(135deg, #9067c6, #f574b9)" }}
+                  style={{ background: "linear-gradient(135deg, #E8A020, #FF5E3A)" }}
                 />
                 <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "3/4" }}>
                   <img
@@ -214,7 +214,7 @@ const Contact = ({ language }) => {
                   />
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: "linear-gradient(to top, rgba(144,103,198,0.3), transparent)" }}
+                    style={{ background: "linear-gradient(to top, rgba(232,160,32,0.3), transparent)" }}
                   />
                 </div>
               </div>
@@ -313,7 +313,7 @@ const Contact = ({ language }) => {
                 {/* Submit */}
                 <motion.button
                   className="w-full py-4 rounded-xl font-semibold text-white relative overflow-hidden group"
-                  style={{ background: "linear-gradient(135deg, #9067c6, #f574b9)" }}
+                  style={{ background: "linear-gradient(135deg, #E8A020, #FF5E3A)" }}
                   type="submit"
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
@@ -327,7 +327,7 @@ const Contact = ({ language }) => {
                   <span className="relative z-10 uppercase tracking-wider">{t.btn}</span>
                   <motion.div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ background: "linear-gradient(135deg, #f574b9, #5961df)" }}
+                    style={{ background: "linear-gradient(135deg, #FF5E3A, #2BBFB4)" }}
                   />
                 </motion.button>
               </form>
