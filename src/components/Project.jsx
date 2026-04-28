@@ -40,8 +40,8 @@ const Project = ({ project, language, index }) => {
 
       {/* Project Image */}
       <div className="relative h-64 overflow-hidden">
-        <img 
-          src={projImg[project.img]} 
+        <img
+          src={projImg[project.img]}
           alt={project.title}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           loading="lazy"
