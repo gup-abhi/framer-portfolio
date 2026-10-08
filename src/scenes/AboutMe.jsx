@@ -138,7 +138,7 @@ const AboutMe = ({ language }) => {
               {/* Available indicator */}
               <div className="flex items-center gap-2 mt-6 pt-6 border-t border-white/10">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="text-gray-400 text-sm">Available for full-time opportunities</span>
+                <span className="text-gray-400 text-sm">{t.currentRole}</span>
               </div>
             </div>
 
@@ -200,7 +200,8 @@ const AboutMe = ({ language }) => {
               {/* Timeline line */}
               <div className="absolute left-0 top-0 bottom-0 w-px ml-3 bg-gradient-to-b from-purple via-pink to-blue opacity-30" />
               <div className="pl-8 space-y-4">
-                <ExperienceCard exp={t.experience.freelance} isActive={true} />
+                <ExperienceCard exp={t.experience.missionPerform} isActive={true} />
+                <ExperienceCard exp={t.experience.freelance} isActive={false} />
                 <ExperienceCard exp={t.experience.tcs} isActive={false} />
               </div>
             </div>

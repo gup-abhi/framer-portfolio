@@ -10,7 +10,7 @@ const LINES = [
 ];
 
 const NAME   = "ABHISHEK GUPTA".split("");
-const ROLE   = "Full Stack Developer  &  Automation Engineer";
+const ROLE   = "Intermediate Full Stack Developer  @  MissionPerform";
 
 // Line starts at: BASE + index * GAP
 const LINE_BASE     = 0.55;

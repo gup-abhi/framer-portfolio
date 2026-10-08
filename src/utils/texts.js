@@ -1,10 +1,10 @@
 export const texts = {
   fr: {
     landing: {
-      subtitle: "Développeur Full Stack.",
+      subtitle: "Développeur Full Stack Intermédiaire.",
       contact: "Contactez-moi",
       talk: "Parlons-en.",
-      available: "Disponible pour de nouvelles opportunités",
+      available: "Développeur Full Stack Intermédiaire chez MissionPerform",
       resume: "Voir le CV",
     },
     navbar: {
@@ -16,10 +16,11 @@ export const texts = {
     },
     about: {
       title: "<à propos/>",
-      text: "Bonjour, je suis Abhishek Gupta, Développeur Full Stack & Ingénieur en Automatisation basé à Toronto. Avec plus de 4 ans d'expérience, j'ai construit et livré des applications web scalables, des API REST et des systèmes d'automatisation alimentés par l'IA. Je détiens un Master en Informatique Appliquée de l'Université Concordia. En tant que développeur chez",
-      empresa: " Tata Consultancy Services",
-      link: "https://www.tcs.com/",
-      text2: ", j'ai reconstruit des services backend servant des millions d'utilisateurs, réduisant les crashs de 80%. En freelance, j'ai réduit la charge manuelle des clients jusqu'à 70% via des pipelines n8n et des systèmes RAG utilisant les APIs OpenAI, Anthropic et Gemini. Je me spécialise dans la création de solutions efficaces, scalables et maintenables sur l'ensemble du stack — React, Node.js, Python, PostgreSQL.",
+      text: "Bonjour, je suis Abhishek Gupta, Développeur Full Stack Intermédiaire chez",
+      empresa: " MissionPerform",
+      link: "https://missionperform.com/",
+      text2: ", basé à Mississauga et titulaire d'un Master en Informatique Appliquée de l'Université Concordia. Auparavant, chez Tata Consultancy Services, j'ai reconstruit des services backend servant des millions d'utilisateurs et réduit les crashs de 80%. En freelance, j'ai livré des applications full-stack et des systèmes d'automatisation. Je me spécialise dans la création de solutions efficaces et maintenables avec React, Node.js, Python et PostgreSQL.",
+      currentRole: "Actuellement chez MissionPerform",
       stats: {
         years: "4+ ans d'expérience",
         clients: "5+ clients livrés",
@@ -27,10 +28,21 @@ export const texts = {
         automation: "Charge réduite de 70%",
       },
       experience: {
+        missionPerform: {
+          title: "Développeur Full Stack Intermédiaire",
+          company: "MissionPerform",
+          period: "Oct 2026 — Présent",
+          highlights: [
+            "Créer et maintenir des fonctionnalités full-stack, des modèles de données aux interfaces soignées",
+            "Collaborer directement avec les consultants, les dirigeants et les clients pour transformer leurs besoins opérationnels en logiciels",
+            "Concevoir, livrer et réviser des fonctionnalités de bout en bout au sein d'une équipe interfonctionnelle",
+            "Diagnostiquer et résoudre les problèmes de performance, les bogues et les incidents en production",
+          ],
+        },
         freelance: {
           title: "Développeur Full Stack & Ingénieur Automatisation",
           company: "Freelance",
-          period: "Sep 2022 — Présent",
+          period: "Sep 2022 — Oct 2026",
           highlights: [
             "Livré 5+ applications full-stack en production pour des clients",
             "Pipelines n8n réduisant la charge manuelle de 70%",
@@ -75,15 +87,15 @@ export const texts = {
       title: "<contact/>",
       btn: "Envoyer un message",
       subtitle: "Construisons quelque chose ensemble",
-      description: "Je suis disponible pour des opportunités full-time, du freelance ou simplement une discussion technique. N'hésitez pas à me contacter !",
+      description: "N'hésitez pas à me contacter pour échanger sur le développement full-stack, les technologies ou une collaboration.",
     },
   },
   en: {
     landing: {
-      subtitle: "Full Stack Developer.",
+      subtitle: "Intermediate Full Stack Developer.",
       contact: "Contact Me",
       talk: "Let's talk.",
-      available: "Open to full-time opportunities",
+      available: "Intermediate Full Stack Developer at MissionPerform",
       resume: "View Resume",
     },
     navbar: {
@@ -95,10 +107,11 @@ export const texts = {
     },
     about: {
       title: "<about/>",
-      text: "Hi, I'm Abhishek Gupta, a Full Stack Developer & Automation Engineer based in Toronto, ON. With 4+ years of experience, I've built and shipped scalable web applications, REST APIs, and AI-powered automation systems. I hold a Master's in Applied Computer Science from Concordia University. At",
-      empresa: " Tata Consultancy Services",
-      link: "https://www.tcs.com/",
-      text2: ", I rebuilt backend services serving millions of users and cut server crash rates by 80%. As a freelance engineer, I've reduced client manual workloads by up to 70% through n8n automation pipelines and RAG systems using OpenAI, Anthropic, and Gemini APIs. I thrive on building efficient, scalable solutions across the full stack — React, Node.js, Python, PostgreSQL.",
+      text: "Hi, I'm Abhishek Gupta, an Intermediate Full Stack Developer at",
+      empresa: " MissionPerform",
+      link: "https://missionperform.com/",
+      text2: ", based in Mississauga, ON. I hold a Master's in Applied Computer Science from Concordia University. Previously at Tata Consultancy Services, I rebuilt backend services serving millions of users and cut server crash rates by 80%. As a freelance engineer, I shipped full-stack applications and automation systems. I build efficient, maintainable solutions across React, Node.js, Python, and PostgreSQL.",
+      currentRole: "Currently at MissionPerform",
       stats: {
         years: "4+ Years Experience",
         clients: "5+ Clients Delivered",
@@ -106,10 +119,21 @@ export const texts = {
         automation: "70% Workload Automated",
       },
       experience: {
+        missionPerform: {
+          title: "Intermediate Full Stack Developer",
+          company: "MissionPerform",
+          period: "Oct 2026 — Present",
+          highlights: [
+            "Build and maintain full-stack features from database models through polished user interfaces",
+            "Work directly with consultants, executives, and clients to turn operational needs into software",
+            "Collaborate across the team to design, ship, and review end-to-end features",
+            "Diagnose and resolve performance bottlenecks, bugs, and production issues",
+          ],
+        },
         freelance: {
           title: "Full Stack Developer & Automation Engineer",
           company: "Freelance",
-          period: "Sep 2022 — Present",
+          period: "Sep 2022 — Oct 2026",
           highlights: [
             "Shipped 5+ production full-stack apps for clients",
             "n8n pipelines cutting manual workload by 70%",
@@ -154,7 +178,7 @@ export const texts = {
       title: "<contact/>",
       btn: "Send Message",
       subtitle: "Let's build something together",
-      description: "I'm open to full-time roles, freelance projects, or just a good tech conversation. Feel free to reach out!",
+      description: "Feel free to reach out to discuss full-stack development, technology, or potential collaborations.",
     },
   },
 };

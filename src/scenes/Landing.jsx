@@ -30,12 +30,7 @@ const Landing = ({ setSelectedPage, language }) => {
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0.2]);
   const scrollIndicatorOpacity = useTransform(scrollY, [0, 200], [1, 0]);
 
-  const typewriterTexts = [
-    texts[language].landing.subtitle,
-    "Automation Engineer.",
-    "AI Enthusiast.",
-    "Open to Work.",
-  ];
+  const typewriterTexts = [texts[language].landing.subtitle];
 
   return (
     <section
@@ -164,8 +159,8 @@ const Landing = ({ setSelectedPage, language }) => {
               className="text-gray-400 text-base sm:text-lg max-w-xl leading-relaxed mb-10"
               style={isDesktop ? {} : { margin: "0 auto 2.5rem" }}
             >
-              Building scalable web apps, REST APIs & AI-powered automation systems.
-              4+ years across the full stack — React, Node.js, Python, PostgreSQL.
+              Intermediate Full Stack Developer at MissionPerform.
+              Building full-stack applications with MongoDB, Express, React, and Node.js (MERN).
             </motion.p>
 
             {/* CTA buttons */}

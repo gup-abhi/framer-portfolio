@@ -21,7 +21,7 @@ const INFO_CARDS = [
   {
     icon: <BsGeoAlt size={22} />,
     label: "Location",
-    value: "Toronto, ON",
+    value: "Mississauga, ON",
     href: null,
   },
   {
